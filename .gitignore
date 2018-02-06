@@ -1,0 +1,28 @@
+# Logs and databases  #
+#######################
+*.log
+*.sql
+*.sqlite
+
+# OS generated files  #
+#######################
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+.vscode
+
+# Node Files          #
+#######################
+node_modules/
+bower_components
+npm-debug.log
+.npm
+dist/
+.editorconfig
+
+# secret config files #
+#######################
+.env
+secret.js

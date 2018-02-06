@@ -1,0 +1,19 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "node src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.2",
+    "gremlin-javascript": "0.0.1-alpha1",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "console-probe": "^2.0.4"
+  }
+}
