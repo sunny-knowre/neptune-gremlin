@@ -88,26 +88,34 @@ db.query('SELECT * from tbc_batch', function (error, results, fields) {
   });
   try {
     (async ()=>{
+      let count = 0
+      let traversal = null
       for (const key in tests) {
         if (tests.hasOwnProperty(key)) {
           const row = tests[key];
-          const traversal = g.addV(row.label)
-                                .property('id', row.id)
-                                .property('sub_id', row.sub_id)
-                                .property('dky', row.dky)
-                                .property('edp', row.edp)
-                                .property('ebs', row.ebs)
-                                .property('data', JSON.stringify(row.datas))
+          if(count < 1){
+            traversal = g.addV(row.label)
+          } else {
+            traversal.addV(row.label)
+          }
+          traversal.property('id', row.id)
+                    .property('sub_id', row.sub_id)
+                    .property('dky', row.dky)
+                    .property('edp', row.edp)
+                    .property('ebs', row.ebs)
+                    .property('data', JSON.stringify(row.datas))
           if(row.season)
             traversal.property('season', row.season )
           if(row.chapter_id)
             traversal.property('chapter_id', row.chapter_id)
           if(row.curriculum_id)
             traversal.property('curriculum_id', row.curriculum_id)  
-
-          await traversal.next()
+          count = count + 1;
+          console.log('addv', row.id)
         }
       }
+      let result = await traversal.next()
+      console.log(result)
     })()
   } catch (err) {
     console.log(err);
