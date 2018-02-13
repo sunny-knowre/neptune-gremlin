@@ -89,7 +89,7 @@ db.query('SELECT * from tbc_batch', function (error, results, fields) {
   try {
     (async ()=>{
       for (const key in tests) {
-        if (tests.hasOwnProperty(key) && key === 'KR-CT-0000014587-0') {
+        if (tests.hasOwnProperty(key)) {
           const row = tests[key];
           const traversal = g.addV(row.label)
                                 .property('id', row.id)
@@ -116,21 +116,3 @@ db.query('SELECT * from tbc_batch', function (error, results, fields) {
 });
 
 db.end(); 
-
-     
-
-/*        const traversal = g.V().hasLabel('Chapter').valueMap(true)
-       // const traversal = g.addV('ChapterTest::TestNode').property('id', 'TEST-123').property('name', 'test').property('datas', '123')
-       // const traversal = g.V().hasLabel('Chapter').limit(1).valueMap(true);     
-       // const traversal = g.V().hasLabel('TestNode').valueMap(true);
-       // const traversal = g.V().hasLabel('TestNode').drop()
-       const startTime = new Date().getTime();
-       let result =  await traversal.toList()
-       let count = await g.V().count().toList()
-       let labels = await g.V().label().dedup().toList()
-       const elapsed = new Date().getTime() - startTime
-       console.log(result);
-       console.log("query time: " + elapsed + " ms");
-       console.log("total nodes: " + count);
-       console.log("total labels: " + labels); */
-
