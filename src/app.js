@@ -38,7 +38,7 @@ db.query('SELECT * from tbc_batch', function (error, results, fields) {
       prefix = prefix + "DT-"
    }
 
-   
+   //start some processing 
    id = prefix + id.padStart(10,"0") + "-" + row.type_seq
    if(tests.hasOwnProperty(id)){
       tests[id].datas.push({data_id: row.data_id, seq: row.seq})
@@ -86,6 +86,8 @@ db.query('SELECT * from tbc_batch', function (error, results, fields) {
          }
        }
   });
+
+  // start neptune traversal building
   try {
     (async ()=>{
       let count = 0
@@ -94,8 +96,10 @@ db.query('SELECT * from tbc_batch', function (error, results, fields) {
         if (tests.hasOwnProperty(key)) {
           const row = tests[key];
           if(count < 1){
+            //declare new traversal
             traversal = g.addV(row.label)
           } else {
+            //dot chain for all the rest
             traversal.addV(row.label)
           }
           traversal.property('id', row.id)
@@ -114,6 +118,7 @@ db.query('SELECT * from tbc_batch', function (error, results, fields) {
           console.log('addv', row.id)
         }
       }
+      //run one big query
       let result = await traversal.next()
       console.log(result)
     })()
