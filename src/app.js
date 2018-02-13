@@ -9,7 +9,7 @@ const mysql= require('mysql');
 const connection = new DriverRemoteConnection(config.neptune.endpoint);
 var g = new structure.Graph().traversal().withRemote(connection);
 const __ = process.statics
-const t = process.t
+const T = process.t
 var db = mysql.createConnection({
   host     : config.mysql.host,
   user     : config.mysql.user,
@@ -102,7 +102,7 @@ db.query('SELECT * from tbc_batch', function (error, results, fields) {
             //dot chain for all the rest
             traversal.addV(row.label)
           }
-          traversal.property('id', row.id)
+          traversal.property(T.id, row.id)
                     .property('sub_id', row.sub_id)
                     .property('dky', row.dky)
                     .property('edp', row.edp)
