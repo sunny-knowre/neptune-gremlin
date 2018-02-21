@@ -21,7 +21,7 @@ var db = mysql.createConnection({
 let tests = {}
 db.connect();
 
-db.query('SELECT * from tbc_batch', function (error, results, fields) {
+/* db.query('SELECT * from tbc_batch', function (error, results, fields) {
   if (error) throw error;
 
   results.forEach(row => {
@@ -127,5 +127,38 @@ db.query('SELECT * from tbc_batch', function (error, results, fields) {
   }
  
 });
+ */
+const before = Date.now();
+db.query(
+ 'SELECT  A.id, (CASE WHEN C.bf=1 THEN "unit" ELSE "chain" END) AS bf, C.v_name as name, C.df AS difficulty, C.video AS video, C.video_ck AS video_ck, A.tier \
+  FROM ( SELECT  module AS id, min(LEVEL) AS tier \
+           FROM TBQ \
+           GROUP BY module \
+         ) A INNER JOIN \
+  TBM C ON A.id = C.no \
+  GROUP BY A.id limit 10', function (error, results, fields) {
+  if (error) throw error;
+  const after = Date.now();
+    
+  results.forEach(row => {
+    let id = row.id+""
+    let prefix = "KR-UN-"
+    let label = "Unit"
+    id = prefix + id.padStart(10,"0")
+    console.log(id) 
+  })
+  const totalTime = (after - before)
+  console.log(totalTime, 'seconds');
+}); 
 
+/* db.query(
+  'SELECT NO AS id, M_NO AS unit, af, af_s, VT AS TYPE, VS AS VALUE, df AS difficulty FROM TBM_DATA limit 1', 
+  function (error, results, fields) {
+   if (error) throw error;
+     
+   results.forEach(row => {
+     console.log(row['unit']) 
+   })
+ });    
+ */
 db.end(); 
