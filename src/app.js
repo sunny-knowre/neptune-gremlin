@@ -12,13 +12,9 @@ const T  = process.t
 const result = [];
 try {
     (async () => { 
-      const traversal = g.V().hasLabel('LevelTest')
-                              .order().by(__.values('season'))
-                              .order().by(__.values('sub_id'))
-                              .project("id", "season", "sub_id")
-                                .by(__.id())
-                                .by(__.values('season'))
-                                .by(__.values('sub_id'))
+      const traversal = g.V('KR-LT-0000016785').as('lt')
+                         .V('KR-CU-0000000005').as('cu')
+                         .addE('test_edge').from_('lt').to('cu')                      
       result.push(await traversal.toList())
       console.log(result);
       
