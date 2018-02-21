@@ -1,25 +1,37 @@
-'use strict'
+"use strict";
+const contentDB = require("./content");
+const Neptune = require("./neptune");
 
-const config = require('../secret')
-const { structure, process } = require('gremlin-javascript');
-const DriverRemoteConnection = require('../node_modules/gremlin-javascript/lib/driver/driver-remote-connection');
-const mysql= require('mysql');
+let loadTests = async () => {
+  const tests = await contentDB.getTests();
 
+  console.log(tests);
 
-const connection = new DriverRemoteConnection(config.neptune.endpoint);
-var g = new structure.Graph().traversal().withRemote(connection);
-const __ = process.statics
-const T = process.t
-var db = mysql.createConnection({
-  host     : config.mysql.host,
-  user     : config.mysql.user,
-  password : config.mysql.password,
-  database : config.mysql.database
-});
+  const n = new Neptune();
+  for (const key in tests) {
+    if (tests.hasOwnProperty(key)) {
+      const row = tests[key];
+      let properties = {
+        id: row.id,
+        sub_id: row.sub_id,
+        dky: row.dky,
+        edp: row.edp,
+        ebs: row.ebs,
+        data: JSON.stringify(row.datas)
+      };
+      if (row.season) properties.season = row.season;
+      if (row.chapter_id) properties.chapter_id = row.chapter_id;
+      if (row.curriculum_id) properties.curriculum_id = row.curriculum_id;
+      n.createVertex({
+        label: row.label,
+        properties
+      });
+    }
+  }
+  n.commit() 
+};
 
-
-let tests = {}
-db.connect();
+loadTests();
 
 /* db.query('SELECT * from tbc_batch', function (error, results, fields) {
   if (error) throw error;
@@ -128,6 +140,7 @@ db.connect();
  
 });
  */
+/* 
 const before = Date.now();
 db.query(
  'SELECT  A.id, (CASE WHEN C.bf=1 THEN "unit" ELSE "chain" END) AS bf, C.v_name as name, C.df AS difficulty, C.video AS video, C.video_ck AS video_ck, A.tier \
@@ -149,7 +162,7 @@ db.query(
   })
   const totalTime = (after - before)
   console.log(totalTime, 'seconds');
-}); 
+});  */
 
 /* db.query(
   'SELECT NO AS id, M_NO AS unit, af, af_s, VT AS TYPE, VS AS VALUE, df AS difficulty FROM TBM_DATA limit 1', 
@@ -161,4 +174,3 @@ db.query(
    })
  });    
  */
-db.end(); 
