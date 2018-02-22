@@ -3,10 +3,9 @@ const DriverRemoteConnection = require("../node_modules/gremlin-javascript/lib/d
 const config = require("../secret");
 
 const connection = new DriverRemoteConnection(config.neptune.endpoint);
-const __ = process.statics;
+//const __ = process.statics;
+//const P = process.P;
 const T = process.t;
-const P = process.P;
-let t = null;
 
 class Neptune {
   constructor() {
@@ -26,8 +25,10 @@ class Neptune {
       for (const key in properties) {
           if (properties.hasOwnProperty(key)) {
               const prop = properties[key];
-              if(prop)
-                this.traversal.property(key,prop)
+              if(prop){
+                let data = prop instanceof Array ? JSON.stringify(prop) : prop
+                this.traversal.property(key,data)
+              } 
           }
       }
       this.nodes++
@@ -40,17 +41,26 @@ class Neptune {
           const before = Date.now(); 
           let result = await this.traversal.next();
           const after = Date.now();
-          resolve(result);
-          console.log('nodes added:',this.nodes)
-          console.log('edges added:',this.edges)
+          if(this.nodes > 0) console.log('nodes added:',this.nodes)
+          if(this.edges > 0) console.log('edges added:',this.edges)
           console.log( 'query time: ', after - before, 'ms')
-          this.nodes = 0
-          this.edges = 0
+          resolve(result);
         })();
       } catch (err) {
         reject(err);
       }
     });
+  }
+
+  newTraversal () {
+    this.traversal = null
+  }
+
+  reset() {
+    this.traversal = null
+    this.nodes = 0
+    this.edges =0
+    console.log('loading done')
   }
 }
 
