@@ -1,7 +1,10 @@
 "use strict";
 
 const mysql = require("mysql");
+const { Transform } = require('stream')
 const config = require("../secret");
+const fs = require('fs')
+
 var pool = mysql.createPool({
   connectionLimit: 10,
   host: config.mysql.host,
@@ -19,7 +22,7 @@ let getTests = () => {
     const stmt = "SELECT * from tbc_batch";
     pool.query(stmt, (error, results) => {
       if (error) reject(error);
-      const tests = {};
+      let tests = {};
       results.forEach(row => {
         let id = row.curriculum_id + "";
         let prefix = "KR-";
@@ -91,8 +94,42 @@ let getTests = () => {
   });
 };
 
+let getUnits = () => {
+  return new Promise((resolve, reject) => {
+    const stmt = 'SELECT  A.id, (CASE WHEN C.bf=1 THEN "unit" ELSE "chain" END) AS bf, C.v_name as name, C.df AS difficulty, C.video AS video, C.video_ck AS video_ck, A.tier \
+                  FROM ( SELECT  module AS id, min(LEVEL) AS tier \
+                          FROM TBQ \
+                          GROUP BY module \
+                        ) A INNER JOIN \
+                  TBM C ON A.id = C.no \
+                  GROUP BY A.id limit 1'
+   
+    pool.query(stmt, (error, results) => {
+      if (error) reject(error);
+      let units = {};
+      results.forEach(row => {
+        let id = row.id+""
+        let prefix = "KR-UN-"
+        id = prefix + id.padStart(10,"0")
+        units[id] = {
+          id,
+          label: "Unit",
+          properties: {
+            chain: row.bf,
+            name: row.name,
+            difficulty: row.difficulty,
+            video: row.video,
+            video_ck: row.video_ck
+          }
+        }
+      })
+      resolve(units)
+    })
+  })
+}
 
 module.exports = {
   end,
-  getTests
+  getTests,
+  getUnits
 };

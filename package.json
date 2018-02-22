@@ -12,7 +12,8 @@
     "express": "^4.16.2",
     "gremlin-javascript": "0.0.1-alpha1",
     "mysql": "^2.15.0",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "stream": "0.0.2"
   },
   "devDependencies": {
     "console-probe": "^2.0.4"

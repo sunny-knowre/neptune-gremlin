@@ -16,18 +16,18 @@ class Neptune {
     this.edges = 0
   }
 
-   createVertex({ label, properties }) {
-      if(!properties.id) throw new Error('must give vertex id')
+  createVertex({ id, label, properties }) {
+      if(!id) throw new Error('must give vertex id')
       if(!this.traversal){
-        this.traversal = this.g.addV(label).property(T.id, properties.id)
+        this.traversal = this.g.addV(label).property(T.id, id)
       } else {
-        this.traversal.addV(label).property(T.id, properties.id)
+        this.traversal.addV(label).property(T.id, id)
       }
-      
       for (const key in properties) {
-          if (properties.hasOwnProperty(key) && key !== "id") {
+          if (properties.hasOwnProperty(key)) {
               const prop = properties[key];
-              this.traversal.property(key,prop)
+              if(prop)
+                this.traversal.property(key,prop)
           }
       }
       this.nodes++
@@ -37,9 +37,15 @@ class Neptune {
     return new Promise((resolve, reject) => {
       try {
         (async () => {
+          const before = Date.now(); 
           let result = await this.traversal.next();
+          const after = Date.now();
           resolve(result);
-          console.log('nodes added',this.nodes)
+          console.log('nodes added:',this.nodes)
+          console.log('edges added:',this.edges)
+          console.log( 'query time: ', after - before, 'ms')
+          this.nodes = 0
+          this.edges = 0
         })();
       } catch (err) {
         reject(err);
