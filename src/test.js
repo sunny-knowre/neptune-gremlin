@@ -9,17 +9,26 @@ var g = new structure.Graph().traversal().withRemote(connection);
 const T = process.t;
 const P = process.P;
 //const __ = process.statics
-
-const result = [];
+let traversal = null
 try {
 	(async () => {
-		//let traversal = g .V() .groupCount() .by(T.label);
-		//const traversal = g.V().has(T.label, P.within("Unit", "Curriculum")).label().dedup()
-		const traversal = g.V() .hasLabel("Unit").drop()
-		result.push(await traversal.next());
-		//traversal = g.E().groupCount().by(T.label);
-		//result.push(await traversal.next());
-		console.log(result);
+		console.group('Test Output');
+		traversal = g.V().constant('start')
+		//traversal.V().has(T.label, P.within("Unit", "Test")).drop()
+		traversal.V().hasLabel("Data").drop()
+		//traversal = g.V().hasLabel("Map").has('productType', null).valueMap()
+		//traversal.V().hasLabel("Data").valueMap(true)
+		//traversal.V().hasLabel('Test').limit(1).valueMap(true)
+		console.log(await traversal.next())
+		console.groupEnd();
+		
+		
+		console.group('Graph Summary')
+		traversal = g.V().groupCount().by(T.label);
+		console.log(await traversal.next());
+		traversal = g.E().groupCount().by(T.label);
+		console.log('edges', await traversal.next())		
+		console.groupEnd()
 	})();
 } catch (err) {
 	console.log(err);

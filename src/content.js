@@ -21,6 +21,7 @@ let getTests = () => {
 		pool.query(stmt, (error, results) => {
 			if (error) reject(error);
 			let tests = {};
+			let count = results.length;
 			results.forEach(row => {
 				let id = row.curriculum_id + "";
 				let prefix = "KR-";
@@ -38,7 +39,10 @@ let getTests = () => {
 				//group tests by id curriculum and type_seq
 				id = prefix + id.padStart(10, "0") + "-" + row.type_seq;
 				if (tests.hasOwnProperty(id)) {
-					tests[id].properties.push({ data_id: row.data_id, seq: row.seq });
+					tests[id].properties.datas.push({
+						data_id: row.data_id,
+						seq: row.seq
+					});
 				} else {
 					let rowId = row.id + "";
 					let chap_id = false;
@@ -89,7 +93,7 @@ let getTests = () => {
 					};
 				}
 			});
-			resolve(tests);
+			resolve({ count, data: tests });
 		});
 	});
 };
@@ -103,11 +107,12 @@ let getUnits = () => {
 				GROUP BY module \
 			) A INNER JOIN \
 			TBM C ON A.id = C.no \
-			GROUP BY A.id limit 10000';
+			GROUP BY A.id';
 
 		pool.query(stmt, (error, results) => {
 			if (error) reject(error);
 			let units = {};
+			let count = results.length;
 			results.forEach(row => {
 				let id = row.id + "";
 				let prefix = "KR-UN-";
@@ -124,17 +129,46 @@ let getUnits = () => {
 					}
 				};
 			});
-			resolve(units);
+			resolve({ count, data: units });
 		});
 	});
 };
 
-let getPatterns = () => {
+let getData = () => {
+	return new Promise((resolve, reject) => {
+		const stmt =
+			"SELECT NO as id, M_NO as unit, af, af_s, VT as type, VS as value, df as difficulty \
+			FROM TBM_DATA limit 1";
 
-}
+		pool.query(stmt, (error, results) => {
+			if (error) reject(error);
+			let data = {};
+			let count = results.length;
+			results.forEach(row => {
+				let id = row.id + "";
+				let prefix = "KR-DA-";
+				id = prefix + id.padStart(10, "0");
+				data[id] = {
+					id,
+					label: "Data",
+					properties: {
+						unit: row.unit,
+						af: row.af,
+						af_s: row.af_s,
+						difficulty: row.difficulty,
+						type: row.type,
+						value: row.value
+					}
+				};
+			});
+			resolve({ count, data: data });
+		});
+	});
+};
 
 module.exports = {
 	end,
 	getTests,
-	getUnits
+	getUnits,
+	getData
 };

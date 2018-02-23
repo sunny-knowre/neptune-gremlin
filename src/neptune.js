@@ -13,10 +13,14 @@ class Neptune {
     this.traversal = null
     this.nodes = 0
     this.edges = 0
+    console.group()
+    console.log('---Neptune Start---')
   }
 
   createVertex({ id, label, properties }) {
       if(!id) throw new Error('must give vertex id')
+      if(!label) throw new Error('must give vertex label')
+      
       if(!this.traversal){
         this.traversal = this.g.addV(label).property(T.id, id)
       } else {
@@ -25,10 +29,12 @@ class Neptune {
       for (const key in properties) {
           if (properties.hasOwnProperty(key)) {
               const prop = properties[key];
-              if(prop){
+              if(prop === null){
+                this.traversal.property(key,"null")
+              } else {
                 let data = prop instanceof Array ? JSON.stringify(prop) : prop
                 this.traversal.property(key,data)
-              } 
+              }
           }
       }
       this.nodes++
@@ -38,12 +44,11 @@ class Neptune {
     return new Promise((resolve, reject) => {
       try {
         (async () => {
-          const before = Date.now(); 
+          console.time('query time')
           let result = await this.traversal.next();
-          const after = Date.now();
+          console.timeEnd('query time')
           if(this.nodes > 0) console.log('nodes added:',this.nodes)
           if(this.edges > 0) console.log('edges added:',this.edges)
-          console.log( 'query time: ', after - before, 'ms')
           resolve(result);
         })();
       } catch (err) {
@@ -51,7 +56,6 @@ class Neptune {
       }
     });
   }
-
   newTraversal () {
     this.traversal = null
   }
@@ -59,8 +63,9 @@ class Neptune {
   reset() {
     this.traversal = null
     this.nodes = 0
-    this.edges =0
-    console.log('loading done')
+    this.edges = 0
+    console.log('---Neptune End---')
+    console.groupEnd()
   }
 }
 
