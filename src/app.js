@@ -50,7 +50,28 @@ let loadTests = async () => {
 	const { count, data } = await contentDB.getTests();
 	console.log("\ntests query done: " + count + " rows");
 	const n = new Neptune();
-	await _createVertexPaged(n, data);
+	let edges = []
+	for (const key in data) {
+		if (data.hasOwnProperty(key)) {
+			const values = data[key].properties.datas;
+			const testId = data[key].id
+			values.forEach(d => {
+				const e = {
+					label: "hasData",
+					inNode: "KR-DA-" + d.data_id.toString().padStart(10,"0"),
+					outNode: testId,
+					properties: {
+						seq: d.seq
+					}
+				}
+				edges.push(e);	
+			});
+		}
+	}
+
+	console.log('\ntest edges: ' + edges.length)
+	//await _createVertexPaged(n, data);
+    await _createEdgePaged(n, edges)
 };
 
 let loadUnits = async () => {
@@ -72,21 +93,18 @@ let loadData = async () => {
 				label: "hasData",
 				inNode: row.id,
 				outNode: "KR-UN-" + row.properties.unit.toString().padStart(10, "0"),
-				properties: {
-					test: ['one', 'two', 'three'],
-					test2: null
-				}
+				properties: null
 			});
 		}
 	}
-//	await _createVertexPaged(n, data);
-  await _createEdgePaged(n, edges);
+	await _createVertexPaged(n, data);
+	await _createEdgePaged(n, edges);
 };
 (async () => {
 	console.time("total time");
-	//await loadTests();
+	await loadTests();
 	//await loadUnits();
-	await loadData();
+	//await loadData();
 
 	console.log("\n");
 	console.timeEnd("total time");

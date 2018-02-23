@@ -134,7 +134,7 @@ let getData = () => {
 	return new Promise((resolve, reject) => {
 		const stmt =
 			"SELECT NO as id, M_NO as unit, af, af_s, VT as type, VS as value, df as difficulty \
-			FROM TBM_DATA where af=1 or af_s=1";
+			FROM TBM_DATA where af>0 or af_s>0";
 
 		pool.query(stmt, (error, results) => {
 			if (error) reject(error);
