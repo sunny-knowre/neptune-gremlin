@@ -101,13 +101,9 @@ let getTests = () => {
 let getUnits = () => {
 	return new Promise((resolve, reject) => {
 		const stmt =
-			'SELECT  A.id, (CASE WHEN C.bf=1 THEN "unit" ELSE "chain" END) AS bf, C.v_name as name, C.df AS difficulty, C.video AS video, C.video_ck AS video_ck, A.tier \
-			FROM ( SELECT  module AS id, min(LEVEL) AS tier \
-				FROM TBQ \
-				GROUP BY module \
-			) A INNER JOIN \
-			TBM C ON A.id = C.no \
-			GROUP BY A.id';
+			'SELECT	C.no as id, (CASE WHEN C.bf=1 THEN "unit" ELSE "chain" END) AS bf, \
+					C.v_name as name, C.df AS difficulty, C.video AS video, C.video_ck AS video_ck \
+			FROM	TBM C'
 
 		pool.query(stmt, (error, results) => {
 			if (error) reject(error);
@@ -138,7 +134,7 @@ let getData = () => {
 	return new Promise((resolve, reject) => {
 		const stmt =
 			"SELECT NO as id, M_NO as unit, af, af_s, VT as type, VS as value, df as difficulty \
-			FROM TBM_DATA limit 1";
+			FROM TBM_DATA where af=1 or af_s=1";
 
 		pool.query(stmt, (error, results) => {
 			if (error) reject(error);

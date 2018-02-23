@@ -8,18 +8,24 @@ const connection = new DriverRemoteConnection(config.neptune.endpoint);
 var g = new structure.Graph().traversal().withRemote(connection);
 const T = process.t;
 const P = process.P;
-//const __ = process.statics
+const __ = process.statics
 let traversal = null
 try {
 	(async () => {
 		console.group('Test Output');
-		traversal = g.V().constant('start')
+		
 		//traversal.V().has(T.label, P.within("Unit", "Test")).drop()
-		traversal.V().hasLabel("Data").drop()
-		//traversal = g.V().hasLabel("Map").has('productType', null).valueMap()
-		//traversal.V().hasLabel("Data").valueMap(true)
-		//traversal.V().hasLabel('Test').limit(1).valueMap(true)
-		console.log(await traversal.next())
+		//traversal.V().hasLabel("Data").drop()
+		//traversal = g.E().hasLabel("hasData").drop()
+		//traversal = g.V().hasLabel("Unit").drop()
+		//traversal = g.V().hasLabel('Unit').limit(1).valueMap(true)
+		console.time('query time')
+		//traversal = g.V('KR-UN-0000004445').as('a').V('KR-DA-0000000050').as('b') 
+		//traversal = g.V('KR-UN-0000004445').out('hasData')
+		//traversal = g.V().hasLabel("Unit").limit(10).valueMap(true)
+		
+		//console.log(await traversal.toList())
+		console.timeEnd('query time')
 		console.groupEnd();
 		
 		

@@ -1,57 +1,95 @@
 "use strict";
 const contentDB = require("./content");
 const Neptune = require("./neptune");
+const paging_size = 500;
 
 let _createVertexPaged = async (traverser, data) => {
-	const paging_size = 3000
-	let counter = 1
+	let counter = 1;
 	for (const key in data) {
 		if (data.hasOwnProperty(key)) {
-			counter++
+			counter++;
 			const row = data[key];
 			traverser.createVertex({
 				id: row.id,
 				label: row.label,
 				properties: row.properties
 			});
-			if( counter > paging_size ){
-				counter=1
-				await traverser.commit()
-				traverser.newTraversal()
+			if (counter > paging_size) {
+				counter = 1;
+				await traverser.commit();
+				traverser.newTraversal();
 			}
 		}
 	}
-	await traverser.commit()
-	traverser.reset()
-} 
+	await traverser.commit();
+	traverser.reset();
+};
+
+let _createEdgePaged = async (traverser, data) => {
+	let counter = 1;
+	for (const edge of data) {
+		counter++;
+		let row = {
+			label: edge.label,
+			outNode: edge.outNode,
+			inNode: edge.inNode,
+			properties: edge.properties
+		}
+		traverser.createEdge(row);
+		if (counter > paging_size) {
+			counter = 1;
+			await traverser.commit();
+			traverser.newTraversal();
+		}
+	}
+	await traverser.commit();
+	traverser.reset();
+};
+
 let loadTests = async () => {
 	const { count, data } = await contentDB.getTests();
-	console.log('\ntests query done: ' + count + ' rows')
+	console.log("\ntests query done: " + count + " rows");
 	const n = new Neptune();
-	await _createVertexPaged(n, data)
+	await _createVertexPaged(n, data);
 };
 
 let loadUnits = async () => {
 	const { count, data } = await contentDB.getUnits();
-	console.log('\nunit query done: ' + count + ' rows')
+	console.log("\nunit query done: " + count + " rows");
 	const n = new Neptune();
-	await _createVertexPaged(n, data)
+	await _createVertexPaged(n, data);
 };
 
 let loadData = async () => {
 	const { count, data } = await contentDB.getData();
-	console.log('\ndata query done: ' + count + ' rows')
+	console.log("\ndata query done: " + count + " rows");
 	const n = new Neptune();
-	await _createVertexPaged(n, data)
+	let edges = [];
+	for (const key in data) {
+		if (data.hasOwnProperty(key)) {
+			const row = data[key];
+			edges.push({
+				label: "hasData",
+				inNode: row.id,
+				outNode: "KR-UN-" + row.properties.unit.toString().padStart(10, "0"),
+				properties: {
+					test: ['one', 'two', 'three'],
+					test2: null
+				}
+			});
+		}
+	}
+//	await _createVertexPaged(n, data);
+  await _createEdgePaged(n, edges);
 };
 (async () => {
-	console.time('total time')
+	console.time("total time");
 	//await loadTests();
 	//await loadUnits();
-	await loadData()
+	await loadData();
 
-	console.log('\n')
-	console.timeEnd('total time')
+	console.log("\n");
+	console.timeEnd("total time");
 	contentDB.end();
 })();
 
