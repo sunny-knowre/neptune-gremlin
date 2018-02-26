@@ -8,13 +8,13 @@ const T = process.t;
 //const P = process.P;
 
 class Neptune {
-	constructor() {
+	constructor(name) {
 		this.g = new structure.Graph().traversal().withRemote(connection);
 		this.traversal = null;
 		this.nodes = 0;
 		this.edges = 0;
 		console.group();
-		console.log("---Neptune Start---");
+		console.log("---Neptune Start " + name + "---");
 	}
 
 	createVertex({ id, label, properties }) {

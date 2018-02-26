@@ -1,0 +1,115 @@
+{
+  "vertexCount": {
+    "Tutorial": 17,
+    "DrillTest::Test": 265,
+    "ChapterTest::Test": 144,
+    "LevelTest::Test": 40,
+    "Chapter": 167,
+    "Curriculum": 26,
+    "Product": 1,
+    "Data": 74086,
+    "MapNode": 1738,
+    "Unit": 20295,
+    "Lesson": 523,
+    "Map": 36
+  },
+  "edgeCount": {
+    "hasTutorial": 52,
+    "hasLesson": 523,
+    "hasChapter": 269,
+    "hasMapNode": 1738,
+    "hasContent": 1829,
+    "hasMap": 36,
+    "hasData": 82854,
+    "hasCurriculum": 36
+  },
+  "vertexProps": {
+    "Tutorial": [
+      "problem_list"
+    ],
+    "DrillTest::Test": [
+      "edp",
+      "dky",
+      "datas",
+      "sub_id",
+      "ebs",
+      "curriculum_id",
+      "season",
+      "chapter_id"
+    ],
+    "ChapterTest::Test": [
+      "edp",
+      "dky",
+      "datas",
+      "sub_id",
+      "ebs",
+      "curriculum_id",
+      "season",
+      "chapter_id"
+    ],
+    "LevelTest::Test": [
+      "edp",
+      "dky",
+      "datas",
+      "sub_id",
+      "ebs",
+      "curriculum_id",
+      "season",
+      "chapter_id"
+    ],
+    "Chapter": [
+      "name",
+      "objective"
+    ],
+    "Curriculum": [
+      "name"
+    ],
+    "Product": [
+      "name",
+      "objective"
+    ],
+    "Data": [
+      "difficulty",
+      "unit",
+      "af_s",
+      "af",
+      "type",
+      "value"
+    ],
+    "MapNode": [
+      "name",
+      "composite_id",
+      "type",
+      "content_id",
+      "extra"
+    ],
+    "Unit": [
+      "difficulty",
+      "name",
+      "chain",
+      "video",
+      "video_ck"
+    ],
+    "Lesson": [
+      "difficulty",
+      "name",
+      "objective"
+    ],
+    "Map": [
+      "product_type",
+      "is_drill",
+      "curriculum_type"
+    ]
+  },
+  "edgeProps": {
+    "hasMapNode": [
+      "seq"
+    ],
+    "hasContent": [
+      "sub_id"
+    ],
+    "hasData": [
+      "seq"
+    ]
+  }
+}

@@ -49,42 +49,40 @@ let _createEdgePaged = async (traverser, data) => {
 let loadTests = async () => {
 	const { count, data } = await contentDB.getTests();
 	console.log("\ntests query done: " + count + " rows");
-	const n = new Neptune();
+	const n = new Neptune('tests');
 	let edges = []
 	for (const key in data) {
 		if (data.hasOwnProperty(key)) {
 			const values = data[key].properties.datas;
 			const testId = data[key].id
 			values.forEach(d => {
-				const e = {
+				edges.push({
 					label: "hasData",
 					inNode: "KR-DA-" + d.data_id.toString().padStart(10,"0"),
 					outNode: testId,
 					properties: {
 						seq: d.seq
 					}
-				}
-				edges.push(e);	
+				})
 			});
 		}
 	}
 
-	console.log('\ntest edges: ' + edges.length)
-	//await _createVertexPaged(n, data);
+	await _createVertexPaged(n, data);
     await _createEdgePaged(n, edges)
 };
 
 let loadUnits = async () => {
 	const { count, data } = await contentDB.getUnits();
 	console.log("\nunit query done: " + count + " rows");
-	const n = new Neptune();
+	const n = new Neptune('units');
 	await _createVertexPaged(n, data);
 };
 
 let loadData = async () => {
 	const { count, data } = await contentDB.getData();
 	console.log("\ndata query done: " + count + " rows");
-	const n = new Neptune();
+	const n = new Neptune('datas');
 	let edges = [];
 	for (const key in data) {
 		if (data.hasOwnProperty(key)) {
@@ -102,7 +100,7 @@ let loadData = async () => {
 };
 (async () => {
 	console.time("total time");
-	await loadTests();
+	//await loadTests();
 	//await loadUnits();
 	//await loadData();
 

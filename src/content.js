@@ -15,9 +15,78 @@ let end = () => {
 	pool.end();
 };
 
+let getPatterns = () => {
+	
+
+}
+
+let getUnits = () => {
+	return new Promise((resolve, reject) => {
+		const stmt =
+			'SELECT	C.no as id, (CASE WHEN C.bf=1 THEN "unit" ELSE "chain" END) AS bf, \
+					C.v_name as name, C.df AS difficulty, C.video AS video, C.video_ck AS video_ck \
+			FROM	TBM C'
+
+		pool.query(stmt, (error, results) => {
+			if (error) reject(error);
+			let units = {};
+			let count = results.length;
+			results.forEach(row => {
+				let id = row.id + "";
+				let prefix = "KR-UN-";
+				id = prefix + id.padStart(10, "0");
+				units[id] = {
+					id,
+					label: "Unit",
+					properties: {
+						chain: row.bf,
+						name: row.name,
+						difficulty: row.difficulty,
+						video: row.video,
+						video_ck: row.video_ck
+					}
+				};
+			});
+			resolve({ count, data: units });
+		});
+	});
+};
+
+let getData = () => {
+	return new Promise((resolve, reject) => {
+		const stmt =
+			"SELECT NO as id, M_NO as unit, af, af_s, VT as type, VS as value, df as difficulty \
+			FROM TBM_DATA where af>0 or af_s>0";
+
+		pool.query(stmt, (error, results) => {
+			if (error) reject(error);
+			let data = {};
+			let count = results.length;
+			results.forEach(row => {
+				let id = row.id + "";
+				let prefix = "KR-DA-";
+				id = prefix + id.padStart(10, "0");
+				data[id] = {
+					id,
+					label: "Data",
+					properties: {
+						unit: row.unit,
+						af: row.af,
+						af_s: row.af_s,
+						difficulty: row.difficulty,
+						type: row.type,
+						value: row.value
+					}
+				};
+			});
+			resolve({ count, data: data });
+		});
+	});
+};
+
 let getTests = () => {
 	return new Promise((resolve, reject) => {
-		const stmt = "SELECT * from tbc_batch";
+		const stmt = "SELECT * from tbc_batch where data_id in (select no from TBM_DATA)";
 		pool.query(stmt, (error, results) => {
 			if (error) reject(error);
 			let tests = {};
@@ -98,73 +167,11 @@ let getTests = () => {
 	});
 };
 
-let getUnits = () => {
-	return new Promise((resolve, reject) => {
-		const stmt =
-			'SELECT	C.no as id, (CASE WHEN C.bf=1 THEN "unit" ELSE "chain" END) AS bf, \
-					C.v_name as name, C.df AS difficulty, C.video AS video, C.video_ck AS video_ck \
-			FROM	TBM C'
-
-		pool.query(stmt, (error, results) => {
-			if (error) reject(error);
-			let units = {};
-			let count = results.length;
-			results.forEach(row => {
-				let id = row.id + "";
-				let prefix = "KR-UN-";
-				id = prefix + id.padStart(10, "0");
-				units[id] = {
-					id,
-					label: "Unit",
-					properties: {
-						chain: row.bf,
-						name: row.name,
-						difficulty: row.difficulty,
-						video: row.video,
-						video_ck: row.video_ck
-					}
-				};
-			});
-			resolve({ count, data: units });
-		});
-	});
-};
-
-let getData = () => {
-	return new Promise((resolve, reject) => {
-		const stmt =
-			"SELECT NO as id, M_NO as unit, af, af_s, VT as type, VS as value, df as difficulty \
-			FROM TBM_DATA where af>0 or af_s>0";
-
-		pool.query(stmt, (error, results) => {
-			if (error) reject(error);
-			let data = {};
-			let count = results.length;
-			results.forEach(row => {
-				let id = row.id + "";
-				let prefix = "KR-DA-";
-				id = prefix + id.padStart(10, "0");
-				data[id] = {
-					id,
-					label: "Data",
-					properties: {
-						unit: row.unit,
-						af: row.af,
-						af_s: row.af_s,
-						difficulty: row.difficulty,
-						type: row.type,
-						value: row.value
-					}
-				};
-			});
-			resolve({ count, data: data });
-		});
-	});
-};
 
 module.exports = {
 	end,
-	getTests,
+	getPatterns,
 	getUnits,
-	getData
+	getData,
+	getTests,
 };
