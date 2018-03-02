@@ -14,11 +14,75 @@ var pool = mysql.createPool({
 let end = () => {
 	pool.end();
 };
+let getPatternUnitRel = () => {
+	return new Promise((resolve, reject) => {
+		const stmt =
+			'SELECT		S.no id, P.no patternId, R.M_NO unitId, S.seq seq \
+			FROM		TBC S LEFT join \
+						TBC P on S.p_no=P.no left join \
+						TBC_RELATION R on R.s_no=S.no \
+			WHERE 		S.lev=4 and R.type=2 \
+			AND     	P.name not like "%보류%" \
+			AND     	P.name not like "%삭제%" \
+			AND     	S.name not like "%보류%" \
+			AND     	S.name not like "%삭제%" \
+			ORDER BY	P.no, S.seq' 
+
+			pool.query(stmt, (error, results) => {
+				if (error) reject(error);
+				let rels = {};
+				let count = results.length;
+				results.forEach(row => {
+					let id = row.id+""
+					id = "step-"+id
+					rels[id] = {
+						pattern: row.patternId,
+						unit: row.unitId,
+						properties: {
+							seq: row.seq
+						}
+					};
+				});
+				resolve({ count, data: rels });
+			});
+	});
+};
 
 let getPatterns = () => {
-	
+	return new Promise((resolve, reject) => {
+		const stmt =
+			'SELECT	P.no id, P.name name, L.no lessonId, P.seq seq \
+			FROM		TBC P inner join \
+						TBC L on P.p_no=L.no \
+			WHERE		P.lev=3  \
+			AND			P.name not like "%보류%" \
+			AND			P.name not like "%삭제%" \
+			AND			L.name not like "%보류%" \
+			AND			L.name not like "%삭제%" \
+			ORDER BY	P.p_no, P.seq'
 
-}
+		pool.query(stmt, (error, results) => {
+			if (error) reject(error);
+			let patterns = {};
+			let count = results.length;
+			results.forEach(row => {
+				let id = row.id + "";
+				let prefix = "KR-PN-";
+				id = prefix + id.padStart(10, "0");
+				patterns[id] = {
+					id,
+					label: "Pattern",
+					properties: {
+						lessonId: "KR-LS-" + row.lessonId.toString().padStart(10,"0"),
+						name: row.name,
+						seq: row.seq
+					}
+				};
+			});
+			resolve({ count, data: patterns });
+		});
+	});
+};
 
 let getUnits = () => {
 	return new Promise((resolve, reject) => {
@@ -171,6 +235,7 @@ let getTests = () => {
 module.exports = {
 	end,
 	getPatterns,
+	getPatternUnitRel,
 	getUnits,
 	getData,
 	getTests,

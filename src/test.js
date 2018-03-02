@@ -8,7 +8,8 @@ const connection = new DriverRemoteConnection(config.neptune.endpoint);
 var g = new structure.Graph().traversal().withRemote(connection);
 const T = process.t;
 const P = process.P;
-const __ = process.statics
+const __ = process.statics;
+const asdf = process.pop;
 let traversal = null
 
 let stats = async () => {
@@ -61,7 +62,18 @@ let test = async () => {
 				.fold())
 			.fold()) 
 
+	//let lessonId = await g.V().hasLabel('Lesson').id().next()
+	//console.log(lessonId.value)
+	//traversal = g.V(lessonId.value).addE('hasPatternTest').to(__.V().hasLabel('PatternTest')).property('seq', 1)
 
+
+	traversal = g.V().hasLabel('Lesson').order().by(__.id())
+		.project("lessonId", "patterns")
+			.by(__.id())
+			.by(__.outE('hasPattern').order().by('seq').inV().id().fold())
+		.fold()
+
+	
 	let result = await traversal.next()
 	fs.writeFile('./output/queryOutput.json',JSON.stringify(result.value, null, 2), function(err) {
 		if(err) console.log(err)

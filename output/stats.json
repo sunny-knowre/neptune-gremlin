@@ -1,31 +1,38 @@
 {
   "vertexCount": {
     "Tutorial": 17,
+    "Pattern": 7015,
     "DrillTest::Test": 265,
     "ChapterTest::Test": 144,
-    "LevelTest::Test": 40,
     "Chapter": 167,
-    "Curriculum": 26,
     "Product": 1,
     "Data": 74086,
     "MapNode": 1738,
     "Unit": 20295,
     "Lesson": 523,
+    "LevelTest::Test": 40,
+    "Curriculum": 26,
     "Map": 36
   },
   "edgeCount": {
     "hasTutorial": 52,
-    "hasLesson": 523,
     "hasChapter": 269,
+    "hasLesson": 523,
     "hasMapNode": 1738,
     "hasContent": 1829,
     "hasMap": 36,
     "hasData": 82854,
+    "hasPattern": 547,
     "hasCurriculum": 36
   },
   "vertexProps": {
     "Tutorial": [
       "problem_list"
+    ],
+    "Pattern": [
+      "name",
+      "lessonId",
+      "seq"
     ],
     "DrillTest::Test": [
       "edp",
@@ -47,22 +54,9 @@
       "season",
       "chapter_id"
     ],
-    "LevelTest::Test": [
-      "edp",
-      "dky",
-      "datas",
-      "sub_id",
-      "ebs",
-      "curriculum_id",
-      "season",
-      "chapter_id"
-    ],
     "Chapter": [
       "name",
       "objective"
-    ],
-    "Curriculum": [
-      "name"
     ],
     "Product": [
       "name",
@@ -95,6 +89,19 @@
       "name",
       "objective"
     ],
+    "LevelTest::Test": [
+      "edp",
+      "dky",
+      "datas",
+      "sub_id",
+      "ebs",
+      "curriculum_id",
+      "season",
+      "chapter_id"
+    ],
+    "Curriculum": [
+      "name"
+    ],
     "Map": [
       "product_type",
       "is_drill",
@@ -102,6 +109,9 @@
     ]
   },
   "edgeProps": {
+    "hasPattern": [
+      "seq"
+    ],
     "hasMapNode": [
       "seq"
     ],
