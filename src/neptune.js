@@ -32,8 +32,13 @@ class Neptune {
 				if (prop === null) {
 					this.traversal.property(key, "null");
 				} else {
-					let data = prop instanceof Array ? JSON.stringify(prop) : prop;
-					this.traversal.property(key, data);
+					if(prop instanceof Array){
+						prop.forEach( row => {
+							this.traversal.property(key, row)
+						})
+					} else {
+						this.traversal.property(key, prop);
+					}
 				}
 			}
 		}

@@ -5,6 +5,7 @@
     "DrillTest::Test": 265,
     "ChapterTest::Test": 144,
     "Chapter": 167,
+    "DATATEMP": 10000,
     "Product": 1,
     "Data": 74086,
     "MapNode": 1738,
@@ -20,6 +21,7 @@
     "hasLesson": 523,
     "hasMapNode": 1738,
     "hasContent": 1829,
+    "hasUnit": 29269,
     "hasMap": 36,
     "hasData": 82854,
     "hasPattern": 496,
@@ -57,6 +59,15 @@
     "Chapter": [
       "name",
       "objective"
+    ],
+    "DATATEMP": [
+      "difficulty",
+      "unit",
+      "student_level",
+      "af_s",
+      "af",
+      "type",
+      "value"
     ],
     "Product": [
       "name",
@@ -117,6 +128,9 @@
     ],
     "hasContent": [
       "sub_id"
+    ],
+    "hasUnit": [
+      "seq"
     ],
     "hasData": [
       "seq"

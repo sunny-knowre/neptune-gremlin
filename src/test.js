@@ -67,7 +67,7 @@ let test = async () => {
 	//traversal = g.V(lessonId.value).addE('hasPatternTest').to(__.V().hasLabel('PatternTest')).property('seq', 1)
 
 
-	traversal = g.V().hasLabel('Pattern').drop()
+	traversal = g.V().hasLabel('DATATEMP').limit(100).valueMap(true).fold()
 
 	
 	let result = await traversal.next()

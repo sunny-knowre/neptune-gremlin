@@ -118,14 +118,25 @@ let getUnits = () => {
 let getData = () => {
 	return new Promise((resolve, reject) => {
 		const stmt =
-			"SELECT NO as id, M_NO as unit, af, af_s, VT as type, VS as value, df as difficulty \
-			FROM TBM_DATA where af>0 or af_s>0";
+			'SELECT	NO as id, M_NO as unit, af, af_s, VT as type, VS as value, df as difficulty, \
+					gf_1, gf_2, gf_3, gf_4, \
+					gf_s_1, gf_s_2, gf_s_3, gf_s_4 \
+			FROM 	TBM_DATA where af>0 or af_s>0 LIMIT 10000';
 
 		pool.query(stmt, (error, results) => {
 			if (error) reject(error);
 			let data = {};
 			let count = results.length;
 			results.forEach(row => {
+				let student_level = []
+				if(row.gf_1 > 0 ) student_level.push("HIGH")
+				if(row.gf_2 > 0 ) student_level.push("MID")
+				if(row.gf_3 > 0 ) student_level.push("LOW")
+				if(row.gf_4 > 0 ) student_level.push("VLOW")
+				if(row.gf_s_1 > 0 ) student_level.push("S_HIGH")
+				if(row.gf_s_2 > 0 ) student_level.push("S_MID")
+				if(row.gf_s_3 > 0 ) student_level.push("S_LOW")
+				if(row.gf_s_4 > 0 ) student_level.push("S_VLOW")
 				let id = row.id + "";
 				let prefix = "DATATEMP-";
 				id = prefix + id.padStart(10, "0");
@@ -138,7 +149,8 @@ let getData = () => {
 						af_s: row.af_s,
 						difficulty: row.difficulty,
 						type: row.type,
-						value: row.value
+						value: row.value,
+						student_level
 					}
 				};
 			});

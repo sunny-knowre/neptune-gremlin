@@ -84,6 +84,7 @@ let loadPatterns = async () => {
 	console.log(data[0])
 	await _createEdgePaged(n, edges2);
 };
+
 let loadTests = async () => {
 	const { count, data } = await contentDB.getTests();
 	console.log("\ntests query done: " + count + " rows");
@@ -121,7 +122,7 @@ let loadData = async () => {
 	const { count, data } = await contentDB.getData();
 	console.log("\ndata query done: " + count + " rows");
 	const n = new Neptune('datas');
-	let edges = [];
+	/* let edges = [];
 	for (const key in data) {
 		if (data.hasOwnProperty(key)) {
 			const row = data[key];
@@ -132,16 +133,16 @@ let loadData = async () => {
 				properties: null
 			});
 		}
-	}
+	} */
 	await _createVertexPaged(n, data);
-	await _createEdgePaged(n, edges);
+	//await _createEdgePaged(n, edges);
 };
 (async () => {
 	console.time("total time");
-	await loadPatterns()
+	//await loadPatterns()
 	//await loadTests();
 	//await loadUnits();
-	//await loadData();
+	await loadData();
 
 	console.log("\n");
 	console.timeEnd("total time");

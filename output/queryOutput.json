@@ -1,1 +1,2604 @@
-null
+[
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000000007",
+    "unit": [
+      5162
+    ],
+    "af_s": [
+      9
+    ],
+    "af": [
+      9
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "lte('2.8')@lte('0.7')"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000000049",
+    "unit": [
+      4801
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "[2,6,9,12,13]"
+    ]
+  },
+  {
+    "difficulty": [
+      1
+    ],
+    "id": "DATATEMP-0000000066",
+    "unit": [
+      4803
+    ],
+    "student_level": [
+      "S_MID",
+      "S_HIGH"
+    ],
+    "af_s": [
+      9
+    ],
+    "af": [
+      9
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "36@4"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000000072",
+    "unit": [
+      4735
+    ],
+    "af_s": [
+      9
+    ],
+    "af": [
+      9
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "x\\le 25"
+    ]
+  },
+  {
+    "difficulty": [
+      3
+    ],
+    "id": "DATATEMP-0000000088",
+    "unit": [
+      4763
+    ],
+    "student_level": [
+      "S_LOW",
+      "LOW",
+      "S_MID",
+      "MID",
+      "VLOW"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "7\\times 7\\times 7\\times 13"
+    ]
+  },
+  {
+    "difficulty": [
+      3
+    ],
+    "id": "DATATEMP-0000000147",
+    "unit": [
+      4872
+    ],
+    "student_level": [
+      "S_LOW",
+      "LOW",
+      "S_MID",
+      "MID",
+      "HIGH"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "[42,84,98,126,252]"
+    ]
+  },
+  {
+    "difficulty": [
+      1
+    ],
+    "id": "DATATEMP-0000000174",
+    "unit": [
+      6908
+    ],
+    "student_level": [
+      "S_HIGH"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      2
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "75@a@b@a\\times b"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000000230",
+    "unit": [
+      5100
+    ],
+    "student_level": [
+      "S_MID"
+    ],
+    "af_s": [
+      9
+    ],
+    "af": [
+      9
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "3\\times a@6@[21,25,35,36,81]"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000000237",
+    "unit": [
+      4860
+    ],
+    "student_level": [
+      "S_HIGH"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      2
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "x\\le 625"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000000241",
+    "unit": [
+      4859
+    ],
+    "student_level": [
+      "S_HIGH"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      2
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "9"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000000244",
+    "unit": [
+      6881
+    ],
+    "af_s": [
+      9
+    ],
+    "af": [
+      9
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      ""
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000000254",
+    "unit": [
+      6888
+    ],
+    "af_s": [
+      9
+    ],
+    "af": [
+      9
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      ""
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000000279",
+    "unit": [
+      4935
+    ],
+    "student_level": [
+      "S_MID"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      2
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "[[16,42],[20,39],[36,49],[35,70],[40,28],[42,66]]"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000000306",
+    "unit": [
+      4942
+    ],
+    "student_level": [
+      "S_LOW",
+      "S_MID",
+      "MID",
+      "HIGH"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "70"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000000329",
+    "unit": [
+      4509
+    ],
+    "student_level": [
+      "S_LOW",
+      "LOW",
+      "MID",
+      "VLOW"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "[15,30,35]"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000000352",
+    "unit": [
+      4965
+    ],
+    "student_level": [
+      "S_LOW",
+      "LOW",
+      "S_VLOW",
+      "S_MID"
+    ],
+    "af_s": [
+      9
+    ],
+    "af": [
+      9
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "[2\\times 3\\times 5,3\\times 5^2\\times 7]@[2^2\\times 3\\times 5^2\\times 7,2^2\\times 3\\times 5^3\\times 7,2\\times 3^3\\times 5\\times 7,2^3\\times 3^2\\times 5^2\\times 7,2\\times 3\\times 5^2\\times 7^3]"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000000393",
+    "unit": [
+      4988
+    ],
+    "student_level": [
+      "S_MID",
+      "HIGH"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "[2^a,3^b]@2^3\\times 3^2@a-b"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000000395",
+    "unit": [
+      6667
+    ],
+    "student_level": [
+      "S_LOW",
+      "LOW",
+      "S_VLOW",
+      "S_MID",
+      "S_HIGH",
+      "MID",
+      "VLOW"
+    ],
+    "af_s": [
+      9
+    ],
+    "af": [
+      9
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "[4,x]@[5,8]"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000000400",
+    "unit": [
+      4990
+    ],
+    "student_level": [
+      "S_HIGH"
+    ],
+    "af_s": [
+      9
+    ],
+    "af": [
+      9
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "[2^2\\times x,2\\times 3^2\\times 5^2]@2\\times 3@[10,15,18,21,25]"
+    ]
+  },
+  {
+    "difficulty": [
+      3
+    ],
+    "id": "DATATEMP-0000000410",
+    "unit": [
+      5967
+    ],
+    "af_s": [
+      9
+    ],
+    "af": [
+      9
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "-\\frac{1}{3}x-1"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000000425",
+    "unit": [
+      5972
+    ],
+    "student_level": [
+      "S_LOW",
+      "LOW",
+      "S_MID",
+      "S_HIGH",
+      "MID",
+      "VLOW"
+    ],
+    "af_s": [
+      9
+    ],
+    "af": [
+      9
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "[-2x+1,\\frac{2}{x},5x-0.3,\\frac{1}{3}x,7,\\frac{x}{5}+6]"
+    ]
+  },
+  {
+    "difficulty": [
+      3
+    ],
+    "id": "DATATEMP-0000000491",
+    "unit": [
+      5969
+    ],
+    "student_level": [
+      "S_LOW",
+      "LOW",
+      "S_MID",
+      "MID",
+      "HIGH",
+      "VLOW"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "x^2+3y^4+2z"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000000496",
+    "unit": [
+      6787
+    ],
+    "af_s": [
+      9
+    ],
+    "af": [
+      9
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      ""
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000000520",
+    "unit": [
+      6802
+    ],
+    "student_level": [
+      "S_LOW",
+      "LOW",
+      "VLOW"
+    ],
+    "af_s": [
+      9
+    ],
+    "af": [
+      9
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "x@-5@570"
+    ]
+  },
+  {
+    "difficulty": [
+      3
+    ],
+    "id": "DATATEMP-0000000526",
+    "unit": [
+      6804
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      ""
+    ]
+  },
+  {
+    "difficulty": [
+      3
+    ],
+    "id": "DATATEMP-0000000545",
+    "unit": [
+      6000
+    ],
+    "student_level": [
+      "LOW",
+      "S_VLOW"
+    ],
+    "af_s": [
+      9
+    ],
+    "af": [
+      9
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "-3x^2@5x^2"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000000568",
+    "unit": [
+      6008
+    ],
+    "student_level": [
+      "S_LOW",
+      "S_VLOW"
+    ],
+    "af_s": [
+      9
+    ],
+    "af": [
+      9
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "2x@[x+x,x\\times x,6\\cdot x^2\\div 3,4\\cdot x\\div \\frac{1}{2},3x\\times \\frac{2}{3}]"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000000583",
+    "unit": [
+      6776
+    ],
+    "af_s": [
+      9
+    ],
+    "af": [
+      9
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "[가\\times 3=나\\times 4, 나\\times 5=다\\times 2]@[232, 다]@[가, 나, 다]"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000000594",
+    "unit": [
+      6772
+    ],
+    "af_s": [
+      9
+    ],
+    "af": [
+      9
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "[150000:2000000:500000, [갑, 을, 병]]@[[400000, 을], 병]"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000000620",
+    "unit": [
+      6712
+    ],
+    "af_s": [
+      9
+    ],
+    "af": [
+      9
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "\\text{가}:\\text{나}=1:\\frac{1}{3}@\\text{가}:\\text{다}=0.7:2@[가,나,다]"
+    ]
+  },
+  {
+    "difficulty": [
+      3
+    ],
+    "id": "DATATEMP-0000000637",
+    "unit": [
+      5981
+    ],
+    "student_level": [
+      "S_LOW",
+      "LOW",
+      "S_MID",
+      "MID",
+      "VLOW"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "[12-a,-a^2+a,3a^3-5a+1,0\\times a^2+3a-2,12+\\frac{2}{a},a-a^2]"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000000649",
+    "unit": [
+      6030
+    ],
+    "student_level": [
+      "S_MID"
+    ],
+    "af_s": [
+      9
+    ],
+    "af": [
+      9
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "[6,4]@[x,0]"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000000665",
+    "unit": [
+      6005
+    ],
+    "student_level": [
+      "S_LOW",
+      "S_VLOW",
+      "MID",
+      "VLOW"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "x-3x+2-5x+3"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000000675",
+    "unit": [
+      6014
+    ],
+    "af_s": [
+      9
+    ],
+    "af": [
+      9
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "2x^2+3x+b-ax^2+2x+3@x@5@a+b"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000000681",
+    "unit": [
+      6015
+    ],
+    "student_level": [
+      "S_HIGH"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "2-(x+3(x-1))@AB"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000000725",
+    "unit": [
+      6258
+    ],
+    "student_level": [
+      "S_LOW",
+      "LOW"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "20@a@3@5@MAX"
+    ]
+  },
+  {
+    "difficulty": [
+      3
+    ],
+    "id": "DATATEMP-0000000740",
+    "unit": [
+      6270
+    ],
+    "student_level": [
+      "S_MID"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "5@x@95"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000000780",
+    "unit": [
+      6291
+    ],
+    "student_level": [
+      "S_HIGH"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "[60,a,8,4,MAX]@[[a,b,c],5]@[6,x,72]@[80,9,x,17]@INCORR"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000000817",
+    "unit": [
+      6349
+    ],
+    "student_level": [
+      "S_HIGH"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      2
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "(3x+2)-(x+b)=ax+5@[a,b]@a^2+b"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000000827",
+    "unit": [
+      6350
+    ],
+    "student_level": [
+      "S_HIGH"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      2
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "(a-2)x+5=-3x+(7-b)@[a,b]@a^2+b^2"
+    ]
+  },
+  {
+    "difficulty": [
+      3
+    ],
+    "id": "DATATEMP-0000000849",
+    "unit": [
+      6450
+    ],
+    "student_level": [
+      "S_LOW",
+      "LOW"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "-2x+2.5=-4.5"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000000884",
+    "unit": [
+      6465
+    ],
+    "student_level": [
+      "S_VLOW",
+      "S_MID",
+      "S_HIGH",
+      "HIGH"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "-\\frac{1}{2}x+1=-5"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000000887",
+    "unit": [
+      6466
+    ],
+    "student_level": [
+      "MID",
+      "HIGH"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "-x+2=-4x-7"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000000899",
+    "unit": [
+      6363
+    ],
+    "student_level": [
+      "S_LOW"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "0.7x-2=1.7x+3"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000000929",
+    "unit": [
+      6420
+    ],
+    "student_level": [
+      "S_HIGH"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "a(5-x)=2x+3@x"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000000963",
+    "unit": [
+      6537
+    ],
+    "student_level": [
+      "S_HIGH"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "\\frac{1}{2}x+\\frac{2}{3}=-\\frac{1}{3}x+\\frac{3}{2}@x+3a=2ax@[x+3\\times (-1)=2\\times 1\\times x,1+3a=2a\\times 1,x-3\\times 1=2\\times 1\\times x,x+3\\times 1=2\\times (-1)\\times x]"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000000974",
+    "unit": [
+      6542
+    ],
+    "student_level": [
+      "S_LOW",
+      "S_VLOW",
+      "S_MID",
+      "MID"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "\\frac{3}{5}x-2=0.2x@[4-\\frac{1}{2}x=\\frac{3}{2},2(x-1)-3=5,\\frac{1}{3}x+1=\\frac{1}{5}x+\\frac{1}{3},0.6x-0.8=0.2x+1.2,\\frac{1}{4}(3x-1)=\\frac{1}{2}x+1]"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000000977",
+    "unit": [
+      6543
+    ],
+    "student_level": [
+      "S_MID",
+      "HIGH"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "[0.5(3-x)=x-\\frac{x-1}{8},2.4x-5=1.7x-2.2,0.3x-0.18=0.07(4+x),\\frac{x}{3}-\\frac{1}{2}=\\frac{x}{4},2(x+\\frac{1}{2})+6=\\frac{1}{2}x+4]@MAX"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000001004",
+    "unit": [
+      6553
+    ],
+    "student_level": [
+      "S_HIGH"
+    ],
+    "af_s": [
+      9
+    ],
+    "af": [
+      9
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "0.4(a-0.5x)=1.2@3x+2=b(x+3)@x=-2@a+b"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000001030",
+    "unit": [
+      6564
+    ],
+    "student_level": [
+      "S_HIGH",
+      "MID"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "x+6=2(3-x)@AFTER@3@x=2"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000001044",
+    "unit": [
+      6569
+    ],
+    "af_s": [
+      9
+    ],
+    "af": [
+      9
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "5x+a=bx@x"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000001067",
+    "unit": [
+      4998
+    ],
+    "student_level": [
+      "S_HIGH"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "[30,60,45]@[a,b,c,d]@a-b-c-d"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000001070",
+    "unit": [
+      5001
+    ],
+    "student_level": [
+      "S_LOW",
+      "S_VLOW",
+      "S_MID",
+      "S_HIGH",
+      "HIGH"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "[35,40,20]"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000001115",
+    "unit": [
+      7055
+    ],
+    "student_level": [
+      "S_LOW",
+      "S_HIGH",
+      "MID"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "[12,18]@[2,30,AFTER]"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000001134",
+    "unit": [
+      5029
+    ],
+    "student_level": [
+      "S_MID",
+      "S_HIGH",
+      "HIGH"
+    ],
+    "af_s": [
+      9
+    ],
+    "af": [
+      9
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "[28,14,21]@3"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000001140",
+    "unit": [
+      5035
+    ],
+    "student_level": [
+      "S_MID",
+      "HIGH"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "[12,8]@[242,288,340,386,430]"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000001150",
+    "unit": [
+      5041
+    ],
+    "student_level": [
+      "S_LOW",
+      "LOW",
+      "S_VLOW",
+      "MID",
+      "VLOW"
+    ],
+    "af_s": [
+      9
+    ],
+    "af": [
+      9
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "[2,4,5]@[1,MAX]@2"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000001165",
+    "unit": [
+      5048
+    ],
+    "student_level": [
+      "S_MID",
+      "HIGH"
+    ],
+    "af_s": [
+      9
+    ],
+    "af": [
+      9
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "[\\frac{18}{n},\\frac{24}{n},\\frac{30}{n}]"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000001175",
+    "unit": [
+      5054
+    ],
+    "student_level": [
+      "S_MID",
+      "S_HIGH",
+      "MID"
+    ],
+    "af_s": [
+      9
+    ],
+    "af": [
+      9
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "[\\frac{1}{3},\\frac{1}{4},\\frac{1}{8}]@x< 100"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000001196",
+    "unit": [
+      5066
+    ],
+    "student_level": [
+      "S_HIGH"
+    ],
+    "af_s": [
+      9
+    ],
+    "af": [
+      9
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "100< A< 200@60@15"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000001200",
+    "unit": [
+      5068
+    ],
+    "student_level": [
+      "S_LOW",
+      "LOW",
+      "S_MID",
+      "MID",
+      "HIGH"
+    ],
+    "af_s": [
+      9
+    ],
+    "af": [
+      9
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "[12,30,A]@6@180@[24,36,42,48,54]"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000001213",
+    "unit": [
+      5074
+    ],
+    "student_level": [
+      "S_HIGH"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "24@2@1@A+B"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000001224",
+    "unit": [
+      5081
+    ],
+    "student_level": [
+      "LOW",
+      "S_VLOW",
+      "MID"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "2^4\\times 3^2@2^3\\times 3^2"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000001227",
+    "unit": [
+      5082
+    ],
+    "student_level": [
+      "S_LOW",
+      "MID"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "1764@14"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000001234",
+    "unit": [
+      7160
+    ],
+    "student_level": [
+      "S_LOW",
+      "LOW",
+      "S_VLOW",
+      "MID",
+      "VLOW"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "[[500,MIN,7],[27,MAX,2],[1800,MIN,4],[500,MIN,1],[24,MAX,8]]@CORR"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000001241",
+    "unit": [
+      5171
+    ],
+    "student_level": [
+      "S_LOW",
+      "S_MID",
+      "MID",
+      "HIGH"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "[[2,MAX,8],[500,MAX,6],[3,MIN,9],[3000,MIN,4],[3,MAX,13]]@INCORR"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000001245",
+    "unit": [
+      5180
+    ],
+    "student_level": [
+      "S_MID",
+      "S_HIGH",
+      "HIGH"
+    ],
+    "af_s": [
+      9
+    ],
+    "af": [
+      9
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "[4,-2,1.4,-\\frac{10}{2},\\frac{1}{3}]"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000001254",
+    "unit": [
+      5183
+    ],
+    "student_level": [
+      "S_MID",
+      "S_HIGH",
+      "HIGH"
+    ],
+    "af_s": [
+      9
+    ],
+    "af": [
+      9
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "[-3,+\\frac{3}{5},-\\frac{3}{4},+4,-\\frac{5}{5},12]"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000001277",
+    "unit": [
+      5200
+    ],
+    "student_level": [
+      "S_LOW",
+      "MID",
+      "HIGH"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "[A=-\\frac{5}{3},B=-1,C=-\\frac{1}{6},D=0.5,E=\\frac{4}{3}]@[A=-\\frac{10}{3},B=-1,C=-\\frac{1}{3},D=0.5,E=\\frac{5}{3}]"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000001300",
+    "unit": [
+      5215
+    ],
+    "student_level": [
+      "VLOW"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "\\frac{5}{3}@\\nline[[-2,2],\\frac{1}{3},1,,]"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000001353",
+    "unit": [
+      5263
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      2
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "3\\le \\left|x\\right|< 6"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000001363",
+    "unit": [
+      5238
+    ],
+    "student_level": [
+      "S_LOW",
+      "LOW",
+      "S_MID",
+      "S_HIGH",
+      "HIGH",
+      "VLOW"
+    ],
+    "af_s": [
+      9
+    ],
+    "af": [
+      9
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "[[1,\\left|-2.1\\right|],[-3,1],[\\left|-1.2\\right|,0],[-7.2,-2.5],[\\left|-\\frac{7}{3}\\right|,\\frac{9}{2}]]"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000001370",
+    "unit": [
+      5239
+    ],
+    "student_level": [
+      "S_LOW",
+      "MID"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "[\\frac{13}{10},-2.4,6,-\\frac{4}{7},-5,3.4]@MIN"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000001373",
+    "unit": [
+      5241
+    ],
+    "student_level": [
+      "S_LOW",
+      "MID",
+      "VLOW"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "[+2.5,-\\frac{10}{3},-0.8,-1.9,\\frac{7}{5}]@MIN"
+    ]
+  },
+  {
+    "difficulty": [
+      3
+    ],
+    "id": "DATATEMP-0000001382",
+    "unit": [
+      5243
+    ],
+    "student_level": [
+      "S_LOW"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "x\\ge -\\frac{11}{4}@3"
+    ]
+  },
+  {
+    "difficulty": [
+      3
+    ],
+    "id": "DATATEMP-0000001390",
+    "unit": [
+      5246
+    ],
+    "student_level": [
+      "LOW",
+      "MID"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "[[a> -\\frac{3}{4},a> -\\frac{3}{4}],[-2.5\\le a< \\frac{7}{3},-2.5< a< \\frac{7}{3}],[-1< a< \\frac{5}{2},-1< a< \\frac{5}{2}],[0< a\\le 2,0< a\\le 2],[-3\\le a\\le 3,-3\\le a\\le 3]]"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000001394",
+    "unit": [
+      5880
+    ],
+    "student_level": [
+      "S_LOW",
+      "MID"
+    ],
+    "af_s": [
+      9
+    ],
+    "af": [
+      9
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "a@b@5000"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000001398",
+    "unit": [
+      5251
+    ],
+    "student_level": [
+      "S_MID"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "-1\\le a\\le 2"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000001425",
+    "unit": [
+      5851
+    ],
+    "student_level": [
+      "S_HIGH"
+    ],
+    "af_s": [
+      9
+    ],
+    "af": [
+      9
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "[300,a,DOWN]@[200,b,UP]"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000001440",
+    "unit": [
+      5424
+    ],
+    "student_level": [
+      "S_LOW",
+      "S_MID",
+      "MID"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "[(-2.5)+(+4.5),(+5)+(-3),0+(-2),(+3)+(-1),(+\\frac{7}{3})+(-\\frac{1}{3})]"
+    ]
+  },
+  {
+    "difficulty": [
+      3
+    ],
+    "id": "DATATEMP-0000001461",
+    "unit": [
+      5457
+    ],
+    "student_level": [
+      "S_LOW",
+      "LOW",
+      "S_VLOW",
+      "S_MID",
+      "VLOW"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "+4@-5"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000001473",
+    "unit": [
+      5462
+    ],
+    "student_level": [
+      "S_LOW",
+      "S_MID",
+      "S_HIGH",
+      "MID",
+      "HIGH"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "(-3)-(+2)-(-5)-(+1)"
+    ]
+  },
+  {
+    "difficulty": [
+      3
+    ],
+    "id": "DATATEMP-0000001481",
+    "unit": [
+      7366
+    ],
+    "student_level": [
+      "S_LOW",
+      "LOW",
+      "S_VLOW",
+      "S_MID",
+      "MID",
+      "VLOW"
+    ],
+    "af_s": [
+      9
+    ],
+    "af": [
+      9
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "[1,800]@[x,y]"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000001486",
+    "unit": [
+      7421
+    ],
+    "student_level": [
+      "S_LOW",
+      "S_MID",
+      "S_HIGH",
+      "MID",
+      "HIGH"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "2(x-1)+5=3+(x-2)"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000001505",
+    "unit": [
+      5478
+    ],
+    "student_level": [
+      "MID"
+    ],
+    "af_s": [
+      9
+    ],
+    "af": [
+      9
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "(+1)-(+4)=-3"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000001518",
+    "unit": [
+      5489
+    ],
+    "student_level": [
+      "S_HIGH"
+    ],
+    "af_s": [
+      9
+    ],
+    "af": [
+      9
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "[1,3]@[x,y]@x+y@MIN"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000001539",
+    "unit": [
+      5495
+    ],
+    "student_level": [
+      "S_LOW",
+      "S_MID"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "[-2+\\frac{2}{3}-\\frac{1}{2},-3+7-4,\\frac{3}{2}-\\frac{5}{2}+2,2.3-4-1,-\\frac{1}{4}+\\frac{5}{3}-\\frac{7}{12}]@MIN"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000001553",
+    "unit": [
+      5485
+    ],
+    "student_level": [
+      "S_HIGH"
+    ],
+    "af_s": [
+      9
+    ],
+    "af": [
+      9
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "[\\frac{1}{2},3,a,MIN]@[a,\\frac{3}{4},b,MIN]"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000001567",
+    "unit": [
+      7357
+    ],
+    "student_level": [
+      "S_MID"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      2
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "30000@[+50000,-25000,-40000]@[\\text{회비},\\text{간식비},\\text{차비}]"
+    ]
+  },
+  {
+    "difficulty": [
+      3
+    ],
+    "id": "DATATEMP-0000001575",
+    "unit": [
+      5815
+    ],
+    "student_level": [
+      "S_LOW",
+      "LOW",
+      "S_VLOW",
+      "VLOW"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "a\\times 3\\times b\\times b"
+    ]
+  },
+  {
+    "difficulty": [
+      3
+    ],
+    "id": "DATATEMP-0000001597",
+    "unit": [
+      6924
+    ],
+    "student_level": [
+      "S_LOW",
+      "LOW",
+      "VLOW"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "[1,2,3,4,5]@3@PLUS"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000001620",
+    "unit": [
+      6934
+    ],
+    "student_level": [
+      "S_LOW",
+      "MID"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      2
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "$V=[lte(-3),lte(-2),null,lte(0),lte(1)];@$V=[lte(-6),null,lte(-2),null,null];@$V=lte('\\dfunc{y}{x}{2x}');"
+    ]
+  },
+  {
+    "difficulty": [
+      3
+    ],
+    "id": "DATATEMP-0000001642",
+    "unit": [
+      5817
+    ],
+    "student_level": [
+      "S_HIGH"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "7\\times x\\times (x+y)\\times x\\times z"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000001671",
+    "unit": [
+      6586
+    ],
+    "student_level": [
+      "S_LOW",
+      "LOW",
+      "S_MID",
+      "MID",
+      "VLOW"
+    ],
+    "af_s": [
+      9
+    ],
+    "af": [
+      9
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "17@x@UP"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000001678",
+    "unit": [
+      6948
+    ],
+    "student_level": [
+      "S_MID",
+      "S_HIGH",
+      "HIGH"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "[1,126]@[2,24]@[3]@[4]"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000001690",
+    "unit": [
+      6959
+    ],
+    "student_level": [
+      "LOW",
+      "S_HIGH",
+      "MID",
+      "HIGH"
+    ],
+    "af_s": [
+      9
+    ],
+    "af": [
+      9
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "CORR"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000001722",
+    "unit": [
+      6962
+    ],
+    "student_level": [
+      "S_VLOW",
+      "S_MID",
+      "MID"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "\\dfunc{f}{x}{-2x}@\\dfunc{f}{-1}{}-\\dfunc{f}{-2}{}"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000001736",
+    "unit": [
+      6603
+    ],
+    "student_level": [
+      "S_LOW",
+      "LOW",
+      "VLOW"
+    ],
+    "af_s": [
+      9
+    ],
+    "af": [
+      9
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "[10,5]@x@@-27"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000001740",
+    "unit": [
+      6963
+    ],
+    "student_level": [
+      "S_MID",
+      "HIGH"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "\\dfunc{f}{1}{2}@[\\dfunc{f}{x}{2x},\\dfunc{f}{x}{-2x},\\dfunc{f}{x}{x+1},\\dfunc{f}{x}{-x+3}]"
+    ]
+  },
+  {
+    "difficulty": [
+      2
+    ],
+    "id": "DATATEMP-0000001770",
+    "unit": [
+      5826
+    ],
+    "student_level": [
+      "S_MID",
+      "HIGH"
+    ],
+    "af_s": [
+      1
+    ],
+    "af": [
+      1
+    ],
+    "type": [
+      1
+    ],
+    "label": "DATATEMP",
+    "value": [
+      "\\frac{ab}{c}@[a\\div b\\times c,a\\times b\\div c,a\\div (c\\div b), a\\div (b\\div c),a\\div c\\times b]"
+    ]
+  }
+]
