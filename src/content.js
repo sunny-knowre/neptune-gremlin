@@ -26,23 +26,22 @@ let getPatternUnitRel = () => {
 			AND     	P.name not like "%삭제%" \
 			AND     	S.name not like "%보류%" \
 			AND     	S.name not like "%삭제%" \
+			AND 		R.M_NO is not null \
 			ORDER BY	P.no, S.seq' 
 
 			pool.query(stmt, (error, results) => {
 				if (error) reject(error);
-				let rels = {};
+				let rels = [];
 				let count = results.length;
 				results.forEach(row => {
-					let id = row.id+""
-					id = "step-"+id
-					rels[id] = {
-						pattern: row.patternId,
-						unit: row.unitId,
+					rels.push({
+						pattern: "KR-PN-" + row.patternId.toString().padStart(10,"0"),
+						unit:"KR-UN-" + row.unitId.toString().padStart(10,"0"),
 						properties: {
 							seq: row.seq
 						}
-					};
-				});
+					})
+				})
 				resolve({ count, data: rels });
 			});
 	});
@@ -128,11 +127,11 @@ let getData = () => {
 			let count = results.length;
 			results.forEach(row => {
 				let id = row.id + "";
-				let prefix = "KR-DA-";
+				let prefix = "DATATEMP-";
 				id = prefix + id.padStart(10, "0");
 				data[id] = {
 					id,
-					label: "Data",
+					label: "DATATEMP",
 					properties: {
 						unit: row.unit,
 						af: row.af,

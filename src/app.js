@@ -1,7 +1,7 @@
 "use strict";
 const contentDB = require("./content");
 const Neptune = require("./neptune");
-const paging_size = 500;
+const paging_size = 1000;
 
 let _createVertexPaged = async (traverser, data) => {
 	let counter = 1;
@@ -47,10 +47,10 @@ let _createEdgePaged = async (traverser, data) => {
 };
 
 let loadPatterns = async () => {
-	//const { count, data } = await contentDB.getPatterns();
-	//console.log("\npattern query done: " + count + " rows");
-	//const n = new Neptune('patterns');
-	/* let edges = []
+	let { count, data } = await contentDB.getPatterns();
+	console.log("\npattern query done: " + count + " rows");
+	const n = new Neptune('patterns');
+	let edges = []
 	for (const key in data) {
 		if (data.hasOwnProperty(key)) {
 			const row = data[key];
@@ -63,27 +63,26 @@ let loadPatterns = async () => {
 				}
 			});
 		}
-	} */
-	
-//	await _createVertexPaged(n, data);
-//	await _createEdgePaged(n, edges);
-
-	const { count, data } = await contentDB.getPatternUnitRel()
-	let edges = []
-	for (const key in data) {
-		if (data.hasOwnProperty(key)) {
-			const row = data[key];
-			edges.push({
-				label: "hasUnit",
-				inNode: "KR-UN-" + row.unit.toString().padStart(10,"0"),
-				outNode: "KR-PN-" + row.pattern.toString().padStart(10,"0"),
-				properties: {
-					seq: row.properties.seq
-				}
-			});
-		}
 	}
-	console.log(edges) 
+	
+	await _createVertexPaged(n, data);
+	await _createEdgePaged(n, edges);
+
+	const rels = await contentDB.getPatternUnitRel()
+	data = rels.data
+	let edges2 = []
+	data.forEach(row => {
+		edges2.push({
+			label: "hasUnit",
+			inNode: row.unit,
+			outNode: row.pattern,
+			properties: {
+				seq: row.properties.seq
+			}
+		});
+	})
+	console.log(data[0])
+	await _createEdgePaged(n, edges2);
 };
 let loadTests = async () => {
 	const { count, data } = await contentDB.getTests();
@@ -107,7 +106,7 @@ let loadTests = async () => {
 		}
 	}
 
-//	await _createVertexPaged(n, data);
+	await _createVertexPaged(n, data);
     await _createEdgePaged(n, edges)
 };
 

@@ -67,11 +67,7 @@ let test = async () => {
 	//traversal = g.V(lessonId.value).addE('hasPatternTest').to(__.V().hasLabel('PatternTest')).property('seq', 1)
 
 
-	traversal = g.V().hasLabel('Lesson').order().by(__.id())
-		.project("lessonId", "patterns")
-			.by(__.id())
-			.by(__.outE('hasPattern').order().by('seq').inV().id().fold())
-		.fold()
+	traversal = g.V().hasLabel('Pattern').drop()
 
 	
 	let result = await traversal.next()
