@@ -67,11 +67,28 @@ let test = async () => {
 	//traversal = g.V(lessonId.value).addE('hasPatternTest').to(__.V().hasLabel('PatternTest')).property('seq', 1)
 
 
-	traversal = g.V().hasLabel('DATATEMP').limit(100).valueMap(true).fold()
+	traversal = g.V('KR-LS-0000052198').outE('hasPattern').order().by(__.values('seq'))
+					.project("patterns").by(__.inV().project("id", "units")
+						.by(__.id())
+						.by(__.outE().order().by(__.values('seq')).inV().dedup().project("id", "datas")
+							.by(__.id())
+							.by(__.out().has('student_level', 'VLOW').id().fold())
+							.fold())
+						.fold())
+					.fold()
 
-	
-	let result = await traversal.next()
-	fs.writeFile('./output/queryOutput.json',JSON.stringify(result.value, null, 2), function(err) {
+	let data = await traversal.next()
+	let result = data.value
+
+	result.forEach(el => {
+		el.patterns.forEach( unit => {
+			unit.units = unit.units.filter( row => {
+				return row.datas.length > 0
+			})
+		})
+	});
+
+	fs.writeFile('./output/queryOutput.json',JSON.stringify(result, null, 2), function(err) {
 		if(err) console.log(err)
 		else console.log('query output saved')
 	})

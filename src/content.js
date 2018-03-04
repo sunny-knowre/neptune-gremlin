@@ -31,18 +31,19 @@ let getPatternUnitRel = () => {
 
 			pool.query(stmt, (error, results) => {
 				if (error) reject(error);
-				let rels = [];
+				let edges = [];
 				let count = results.length;
 				results.forEach(row => {
-					rels.push({
-						pattern: "KR-PN-" + row.patternId.toString().padStart(10,"0"),
-						unit:"KR-UN-" + row.unitId.toString().padStart(10,"0"),
+					edges.push({
+						label: "hasUnit",
+						inNode: "KR-UN-" + row.unitId.toString().padStart(10,"0"),
+						outNode: "KR-PN-" + row.patternId.toString().padStart(10,"0"),
 						properties: {
 							seq: row.seq
 						}
 					})
 				})
-				resolve({ count, data: rels });
+				resolve(edges);
 			});
 	});
 };
@@ -63,6 +64,7 @@ let getPatterns = () => {
 		pool.query(stmt, (error, results) => {
 			if (error) reject(error);
 			let patterns = {};
+			let edges = []
 			let count = results.length;
 			results.forEach(row => {
 				let id = row.id + "";
@@ -72,13 +74,19 @@ let getPatterns = () => {
 					id,
 					label: "Pattern",
 					properties: {
-						lessonId: "KR-LS-" + row.lessonId.toString().padStart(10,"0"),
-						name: row.name,
-						seq: row.seq
+						name: row.name
 					}
 				};
+				edges.push({
+					label: "hasPattern",
+					inNode: id,
+					outNode: "KR-LS-" + row.lessonId.toString().padStart(10,"0"),
+					properties: {
+						seq: row.seq
+					}
+				})
 			});
-			resolve({ count, data: patterns });
+			resolve({ count, data: patterns, edges });
 		});
 	});
 };
@@ -121,11 +129,12 @@ let getData = () => {
 			'SELECT	NO as id, M_NO as unit, af, af_s, VT as type, VS as value, df as difficulty, \
 					gf_1, gf_2, gf_3, gf_4, \
 					gf_s_1, gf_s_2, gf_s_3, gf_s_4 \
-			FROM 	TBM_DATA where af>0 or af_s>0 LIMIT 10000';
+			FROM 	TBM_DATA where af>0 or af_s>0';
 
 		pool.query(stmt, (error, results) => {
 			if (error) reject(error);
 			let data = {};
+			let edges = []
 			let count = results.length;
 			results.forEach(row => {
 				let student_level = []
@@ -138,13 +147,12 @@ let getData = () => {
 				if(row.gf_s_3 > 0 ) student_level.push("S_LOW")
 				if(row.gf_s_4 > 0 ) student_level.push("S_VLOW")
 				let id = row.id + "";
-				let prefix = "DATATEMP-";
+				let prefix = "KR-DA-";
 				id = prefix + id.padStart(10, "0");
 				data[id] = {
 					id,
-					label: "DATATEMP",
+					label: "Data",
 					properties: {
-						unit: row.unit,
 						af: row.af,
 						af_s: row.af_s,
 						difficulty: row.difficulty,
@@ -153,8 +161,14 @@ let getData = () => {
 						student_level
 					}
 				};
+				edges.push({
+					label: "hasData",
+					inNode: id,
+					outNode: "KR-UN-" + row.unit.toString().padStart(10, "0"),
+					properties: null
+				})
 			});
-			resolve({ count, data: data });
+			resolve({ count, data, edges });
 		});
 	});
 };
@@ -165,6 +179,7 @@ let getTests = () => {
 		pool.query(stmt, (error, results) => {
 			if (error) reject(error);
 			let tests = {};
+			let edges = [];
 			let count = results.length;
 			results.forEach(row => {
 				let id = row.curriculum_id + "";
@@ -219,7 +234,7 @@ let getTests = () => {
 							dky = false;
 						}
 					}
-
+					
 					// build final tests list get rid of subtype in UID for final list items
 					tests[id] = {
 						id: id.slice(0, 6) + rowId.padStart(10, "0"),

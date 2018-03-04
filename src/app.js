@@ -1,7 +1,7 @@
 "use strict";
 const contentDB = require("./content");
 const Neptune = require("./neptune");
-const paging_size = 1000;
+const paging_size = 200;
 
 let _createVertexPaged = async (traverser, data) => {
 	let counter = 1;
@@ -29,12 +29,14 @@ let _createEdgePaged = async (traverser, data) => {
 	let counter = 1;
 	for (const edge of data) {
 		counter++;
+		
 		let row = {
 			label: edge.label,
 			outNode: edge.outNode,
 			inNode: edge.inNode,
 			properties: edge.properties
 		}
+
 		traverser.createEdge(row);
 		if (counter > paging_size) {
 			counter = 1;
@@ -46,43 +48,38 @@ let _createEdgePaged = async (traverser, data) => {
 	traverser.reset();
 };
 
+let _createEdgePagedByOut = async (traverser, data) => {
+	let counter = 1;
+	for (let i = 0; i < data.length; i++) {
+		const edge = data[i];
+		const row = {
+			label: edge.label,
+			outNode: edge.outNode,
+			inNode: edge.inNode,
+			properties: edge.properties
+		}
+		if(counter > 1 && data[i-1].outNode !== edge.outNode ){
+			await traverser.commit();
+			traverser.newTraversal();
+		}
+		counter++
+		traverser.createEdge(row);
+	}
+	await traverser.commit();
+	traverser.reset();
+};
+
+
 let loadPatterns = async () => {
-	let { count, data } = await contentDB.getPatterns();
+	let { count, data, edges } = await contentDB.getPatterns();
 	console.log("\npattern query done: " + count + " rows");
 	const n = new Neptune('patterns');
-	let edges = []
-	for (const key in data) {
-		if (data.hasOwnProperty(key)) {
-			const row = data[key];
-			edges.push({
-				label: "hasPattern",
-				inNode: row.id,
-				outNode: row.properties.lessonId,
-				properties: {
-					seq: row.properties.seq
-				}
-			});
-		}
-	}
 	
-	await _createVertexPaged(n, data);
-	await _createEdgePaged(n, edges);
+	//await _createVertexPaged(n, data);
+	//await _createEdgePagedByOut(n, edges);
 
-	const rels = await contentDB.getPatternUnitRel()
-	data = rels.data
-	let edges2 = []
-	data.forEach(row => {
-		edges2.push({
-			label: "hasUnit",
-			inNode: row.unit,
-			outNode: row.pattern,
-			properties: {
-				seq: row.properties.seq
-			}
-		});
-	})
-	console.log(data[0])
-	await _createEdgePaged(n, edges2);
+	const children = await contentDB.getPatternUnitRel()
+	await _createEdgePaged(n, children);
 };
 
 let loadTests = async () => {
@@ -119,30 +116,19 @@ let loadUnits = async () => {
 };
 
 let loadData = async () => {
-	const { count, data } = await contentDB.getData();
+	const { count, data, edges} = await contentDB.getData();
 	console.log("\ndata query done: " + count + " rows");
 	const n = new Neptune('datas');
-	/* let edges = [];
-	for (const key in data) {
-		if (data.hasOwnProperty(key)) {
-			const row = data[key];
-			edges.push({
-				label: "hasData",
-				inNode: row.id,
-				outNode: "KR-UN-" + row.properties.unit.toString().padStart(10, "0"),
-				properties: null
-			});
-		}
-	} */
+ 	
 	await _createVertexPaged(n, data);
-	//await _createEdgePaged(n, edges);
+	await _createEdgePaged(n, edges);
 };
 (async () => {
 	console.time("total time");
-	//await loadPatterns()
-	//await loadTests();
 	//await loadUnits();
-	await loadData();
+	//await loadData();
+	await loadPatterns()
+	//await loadTests();
 
 	console.log("\n");
 	console.timeEnd("total time");
