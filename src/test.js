@@ -66,17 +66,22 @@ let test = async () => {
 	//console.log(lessonId.value)
 	//traversal = g.V(lessonId.value).addE('hasPatternTest').to(__.V().hasLabel('PatternTest')).property('seq', 1)
 
-
-	traversal = g.V('KR-LS-0000052198').outE('hasPattern').order().by(__.values('seq'))
-					.project("patterns").by(__.inV().project("id", "units")
+	let lessonId = 'KR-LS-0000013358'
+	let level = 'S_HIGH'
+	traversal = g.V(lessonId).outE('hasPattern').order().by(__.values('seq')).inV()
+					.where(__.out('hasUnit').out().has('student_level',level))
+					.project("patterns").by(__.project("id","name", "units")
 						.by(__.id())
-						.by(__.outE().order().by(__.values('seq')).inV().dedup().project("id", "datas")
+						.by(__.values('name'))
+						.by(__.outE().order().by(__.values('seq')).inV().dedup().project("id","name", "datas")
 							.by(__.id())
-							.by(__.out().has('student_level', 'VLOW').id().fold())
+							.by(__.values('name'))
+							.by(__.out().has('student_level', level).id().fold())
 							.fold())
 						.fold())
 					.fold()
 
+	
 	let data = await traversal.next()
 	let result = data.value
 
@@ -86,7 +91,7 @@ let test = async () => {
 				return row.datas.length > 0
 			})
 		})
-	});
+	}); 
 
 	fs.writeFile('./output/queryOutput.json',JSON.stringify(result, null, 2), function(err) {
 		if(err) console.log(err)
