@@ -8,21 +8,22 @@ const connection = new DriverRemoteConnection(config.neptune.endpoint);
 var g = new structure.Graph().traversal().withRemote(connection);
 const T = process.t;
 const P = process.P;
+const C = process.cardinality;
 const __ = process.statics;
 const asdf = process.pop;
 let traversal = null
 
 let stats = async () => {
-	let vProps = await g.V().group().by(T.label).by(__.properties().key().dedup().fold()).next()
-		let eProps = await g.E().group().by(T.label).by(__.properties().key().dedup().fold()).next()
+		//let vProps = await g.V().group().by(T.label).by(__.properties().key().dedup().fold()).next()
+		//let eProps = await g.E().group().by(T.label).by(__.properties().key().dedup().fold()).next()
 		let v = await g.V().groupCount().by(T.label).next()
 		let e = await g.E().groupCount().by(T.label).next()
 		
 		let stats = {
 			vertexCount: v.value,
 			edgeCount: e.value,
-			vertexProps: vProps.value,
-			edgeProps: eProps.value
+		//	vertexProps: vProps.value,
+		//	edgeProps: eProps.value
 		}
 		let result = JSON.stringify(stats,null,2)
 		fs.writeFile('./output/stats.json', result, function(err) {
@@ -68,31 +69,27 @@ let test = async () => {
 
 	let lessonId = 'KR-LS-0000013358'
 	let level = 'S_HIGH'
-	traversal = g.V(lessonId).outE('hasPattern').order().by(__.values('seq')).inV()
-					.where(__.out('hasUnit').out().has('student_level',level))
-					.project("patterns").by(__.project("id","name", "units")
+	traversal = g.V("KR-LS-0000003358")
+				.outE('hasPattern').order().by(__.values('seq')).as('pseq').inV()
+					.where(__.out('hasUnit').out().has('student_level'))
+					.project("patterns").by(__.project("id","name","seq", "units")
 						.by(__.id())
 						.by(__.values('name'))
-						.by(__.outE().order().by(__.values('seq')).inV().dedup().project("id","name", "datas")
+						.by(__.select('pseq').values('seq'))
+						.by(__.outE().order().by(__.values('seq')).as('seq').inV().dedup().project("id","name","seq", "datas")
 							.by(__.id())
 							.by(__.values('name'))
-							.by(__.out().has('student_level', level).id().fold())
+							.by(__.select('seq').values('seq'))
+							.by(__.out().has('student_level').id().fold())
 							.fold())
 						.fold())
 					.fold()
 
 	
-	let data = await traversal.next()
-	let result = data.value
-
-	result.forEach(el => {
-		el.patterns.forEach( unit => {
-			unit.units = unit.units.filter( row => {
-				return row.datas.length > 0
-			})
-		})
-	}); 
-
+	traversal = g.V().hasLabel('ProgressTest').drop()
+	
+	let result = await traversal.next()
+	result = result.value
 	fs.writeFile('./output/queryOutput.json',JSON.stringify(result, null, 2), function(err) {
 		if(err) console.log(err)
 		else console.log('query output saved')
@@ -102,6 +99,6 @@ let test = async () => {
 }
 
 (async ()=> {
-	await test()
-	//await stats()
+	//await test()
+	await stats()
 })()

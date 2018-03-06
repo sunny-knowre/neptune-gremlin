@@ -8,13 +8,11 @@ const T = process.t;
 //const P = process.P;
 
 class Neptune {
-	constructor(name) {
+	constructor() {
 		this.g = new structure.Graph().traversal().withRemote(connection);
 		this.traversal = null;
 		this.nodes = 0;
 		this.edges = 0;
-		console.group();
-		console.log("---Neptune Start " + name + "---");
 	}
 
 	createVertex({ id, label, properties }) {
@@ -74,11 +72,7 @@ class Neptune {
 			if(this.traversal){
 				try {
 					(async () => {
-						console.time("query time");
 						let result = await this.traversal.next();
-						console.timeEnd("query time");
-						if (this.nodes > 0) console.log("nodes added:", this.nodes);
-						if (this.edges > 0) console.log("edges added:", this.edges);
 						resolve();
 					})();
 				} catch (err) {
@@ -97,8 +91,6 @@ class Neptune {
 		this.traversal = null;
 		this.nodes = 0;
 		this.edges = 0;
-		console.log("---Neptune End---");
-		console.groupEnd();
 	}
 }
 

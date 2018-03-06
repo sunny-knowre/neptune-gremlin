@@ -257,6 +257,56 @@ let getTests = () => {
 	});
 };
 
+let getProblems = () => {
+	return new Promise((resolve, reject) => {
+		const stmt = 
+		'SELECT	NO AS id, MODULE AS unit,PMODULE AS parent_unit, \
+				DATA AS data_id, level, seq, sinod, pseq, af \
+		FROM	TBQ \
+		WHERE	af=1 and MODULE<999999 \
+		ORDER BY DATA, LSEQ'
+
+		pool.query(stmt, (error, results) => {
+			if (error) reject(error);
+			let problems = {};
+			let edges = []
+			let count = { vertices: results.length};
+			results.forEach(row => {
+				let id = row.id + "";
+				let prefix = "KR-PB-";
+				id = prefix + id.padStart(10, "0");
+				problems[id] = {
+					id,
+					label: "Problem",
+					properties: {
+						level: row.level,
+						seq: row.seq,
+						pseq: row.pseq,
+						sinod: row.sinod,
+						af: row.af
+					}
+				};
+				if(row.level === 1){
+					edges.push({
+						label: "makesProblem",
+						inNode: id,
+						outNode: "KR-UN-" + row.unit.toString().padStart(10, "0"),
+						properties: null
+					})
+				} else {
+					edges.push({
+						label: "callsUnit",
+						outNode: id,
+						inNode: "KR-UN-" + row.unit.toString().padStart(10, "0"),
+						properties: null
+					})
+				}
+			});
+			count.edges = edges.length
+			resolve({ count, data:problems, edges });
+		});
+	});
+};
 
 module.exports = {
 	end,
@@ -265,4 +315,5 @@ module.exports = {
 	getUnits,
 	getData,
 	getTests,
+	getProblems
 };

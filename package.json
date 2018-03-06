@@ -13,6 +13,7 @@
     "gremlin-javascript": "0.0.1-alpha1",
     "mysql": "^2.15.0",
     "path": "^0.12.7",
+    "progress": "^2.0.0",
     "stream": "0.0.2"
   },
   "devDependencies": {
