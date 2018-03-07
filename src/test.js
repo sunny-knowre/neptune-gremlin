@@ -86,7 +86,18 @@ let test = async () => {
 					.fold()
 
 	
-	traversal = g.V().hasLabel('ProgressTest').drop()
+	traversal = g.V().hasLabel('Unit').as('u').out('hasData').as('d')
+						.out('makesProblem').as('p1')
+						.out('hasSubstep').as('p2')
+						.out('hasSubstep').as('p3')
+						.project('unit')
+							.by(__.select('u').id())
+							.by(__.select('d')
+								.project("id", "problems")
+									.by(__.id())
+									.by(__.select('p1','p2','p3').by(T.id).fold())
+							.fold())
+						.fold()z
 	
 	let result = await traversal.next()
 	result = result.value
@@ -99,6 +110,6 @@ let test = async () => {
 }
 
 (async ()=> {
-	//await test()
-	await stats()
+	await test()
+	//await stats()
 })()

@@ -34,8 +34,9 @@ let _createVertexPaged = async (traverser, data, count=0) => {
 	traverser.reset();
 };
 
-let _createEdgePaged = async (traverser, data, count=0) => {
+let _createEdgePaged = async (traverser, data) => {
 	let counter = 1;
+	let count = data.length
 	console.log()
 	let bar = new ProgressBar('  adding :total edges [:bar] :rate edges/s :percent :etas', {
 		complete: '=',
@@ -63,10 +64,19 @@ let _createEdgePaged = async (traverser, data, count=0) => {
 	await traverser.commit();
 	traverser.reset();
 };
-//needs progress refac
+
 let _createEdgePagedByOut = async (traverser, data) => {
 	let counter = 1;
-	for (let i = 0; i < data.length; i++) {
+	let count = data.length
+	let lastTick = 0;
+	console.log()
+	let bar = new ProgressBar('  adding :total edges [:bar] :rate edges/s :percent :etas', {
+		complete: '=',
+		incomplete: ' ',
+		width: 40,
+		total: count
+	});
+	for (let i = 0; i < count; i++) {
 		const edge = data[i];
 		const row = {
 			label: edge.label,
@@ -76,6 +86,8 @@ let _createEdgePagedByOut = async (traverser, data) => {
 		}
 		if(counter > 1 && data[i-1].outNode !== edge.outNode ){
 			await traverser.commit();
+			bar.tick(counter - lastTick)
+			lastTick = counter
 			traverser.newTraversal();
 		}
 		counter++
@@ -88,19 +100,18 @@ let _createEdgePagedByOut = async (traverser, data) => {
 
 let loadPatterns = async () => {
 	let name = 'patterns'
-	//needs count refac
 	let { count, data, edges } = await contentDB.getPatterns();
 	console.group();
-	console.log("---Start Neptune Job for " + name + "---");
+	console.log("\n---Start Neptune Job for " + name + "---");
 	const n = new Neptune('patterns');
 
-	await _createVertexPaged(n, data, count.vertices);
-	await _createEdgePagedByOut(n, edges, count.edges);
-	//needs count refac
+	await _createVertexPaged(n, data, count);
+	await _createEdgePagedByOut(n, edges);
+
 	const children = await contentDB.getPatternUnitRel()
 	console.log('adding pattern data rels')
-	await _createEdgePaged(n, children, children.length);
-	console.log("---End Neptune Job for " + name + "---");
+	await _createEdgePaged(n, children);
+	console.log("\n---End Neptune Job for " + name + "---");
 	console.groupEnd()
 };
 
@@ -108,7 +119,7 @@ let loadTests = async () => {
 	const name = 'tests'
 	const { count, data } = await contentDB.getTests();
 	console.group();
-	console.log("---Start Neptune Job for " + name + "---");
+	console.log("\n---Start Neptune Job for " + name + "---");
 	const n = new Neptune('tests');
 	let edges = []
 	for (const key in data) {
@@ -129,8 +140,8 @@ let loadTests = async () => {
 	}
 
 	await _createVertexPaged(n, data, count);
-	await _createEdgePaged(n, edges, edges.length)
-	console.log("---End Neptune Job for " + name + "---");
+	await _createEdgePaged(n, edges)
+	console.log("\n---End Neptune Job for " + name + "---");
 	console.groupEnd()
 };
 
@@ -138,25 +149,26 @@ let loadUnits = async () => {
 	const name = 'units'
 	const { count, data } = await contentDB.getUnits();
 	console.group();
-	console.log("---Start Neptune Job for " + name + "---");
+	console.log("\n---Start Neptune Job for " + name + "---");
+
 	const n = new Neptune('units');
 	await _createVertexPaged(n, data, count);
-	console.log("---End Neptune Job for " + name + "---");
+	
+	console.log("\n---End Neptune Job for " + name + "---");
 	console.groupEnd()
 };
 
-//needs content refac
 let loadData = async () => {
 	const name = 'datas'
 	const { count, data, edges} = await contentDB.getData();
 	console.group();
-	console.log("---Start Neptune Job for " + name + "---");
+	console.log("\n---Start Neptune Job for " + name + "---");
 	const n = new Neptune();
 	
-	await _createVertexPaged(n, data, count.vertices);
-	await _createEdgePaged(n, edges, count.edges);
+	await _createVertexPaged(n, data, count);
+	await _createEdgePaged(n, edges);
 
-	console.log("---End Neptune Job for " + name + "---");
+	console.log("\n---End Neptune Job for " + name + "---");
 	console.groupEnd()
 };
 
@@ -164,23 +176,38 @@ let loadProblems = async () => {
 	const name = 'problems'
 	const { count, data, edges} = await contentDB.getProblems();
 	console.group();
-	console.log("---Start Neptune Job for " + name + "---");
+	console.log("\n---Start Neptune Job for " + name + "---");
 
 	const n = new Neptune();
-	await _createVertexPaged(n, data, count.vertices);
-	await _createEdgePaged(n, edges, count.edges);
+	await _createVertexPaged(n, data, count);
+	await _createEdgePaged(n, edges);
 	
-	console.log("---End Neptune Job for " + name + "---");
+	console.log("\n---End Neptune Job for " + name + "---");
+	console.groupEnd()
+}
+
+let linkProblemSubsteps = async () => {
+	const name = 'problem substeps'
+	const { edges} = await contentDB.getSubProblemRels();
+	console.group();
+	console.log("\n---Start Neptune Job for " + name + "---");
+
+	const n = new Neptune();
+	await _createEdgePaged(n, edges);
+	
+	console.log("\n---End Neptune Job for " + name + "---");
 	console.groupEnd()
 }
 (async () => {
 	let start = Date.now()
-	console.group('App')
+	console.group()
+
 	//await loadUnits();
 	//await loadData();
 	//await loadPatterns()
 	//await loadTests();
-	await loadProblems()
+	//await loadProblems()
+	//await linkProblemSubsteps()
 
 	let end = Date.now()
 	let total = (end - start) / 1000

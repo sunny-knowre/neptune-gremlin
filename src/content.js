@@ -32,7 +32,6 @@ let getPatternUnitRel = () => {
 			pool.query(stmt, (error, results) => {
 				if (error) reject(error);
 				let edges = [];
-				let count = results.length;
 				results.forEach(row => {
 					edges.push({
 						label: "hasUnit",
@@ -179,7 +178,6 @@ let getTests = () => {
 		pool.query(stmt, (error, results) => {
 			if (error) reject(error);
 			let tests = {};
-			let edges = [];
 			let count = results.length;
 			results.forEach(row => {
 				let id = row.curriculum_id + "";
@@ -270,7 +268,7 @@ let getProblems = () => {
 			if (error) reject(error);
 			let problems = {};
 			let edges = []
-			let count = { vertices: results.length};
+			let count = results.length
 			results.forEach(row => {
 				let id = row.id + "";
 				let prefix = "KR-PB-";
@@ -290,7 +288,7 @@ let getProblems = () => {
 					edges.push({
 						label: "makesProblem",
 						inNode: id,
-						outNode: "KR-UN-" + row.unit.toString().padStart(10, "0"),
+						outNode: "KR-DA-" + row.data_id.toString().padStart(10, "0"),
 						properties: null
 					})
 				} else {
@@ -302,12 +300,46 @@ let getProblems = () => {
 					})
 				}
 			});
-			count.edges = edges.length
 			resolve({ count, data:problems, edges });
 		});
 	});
 };
 
+let getSubProblemRels = () => {
+	return new Promise((resolve, reject) => {
+		const stmt = 
+		'SELECT	R.id, R.parent, R.level, R.seq, R.pseq, R.af \
+		FROM	(   SELECT  q.NO AS id, p.NO AS parent, q.level, q.seq, q.pseq, q.af \
+							FROM TBQ q \
+							INNER JOIN TBQ p ON (q.data=p.data AND q.pseq=p.seq) \
+							WHERE q.LEVEL=2 AND p.LEVEL=1  AND q.af=1 AND p.af=1 GROUP BY q.no \
+					UNION\
+					SELECT  q.NO AS id, p.NO AS parent, q.level, q.seq, q.pseq, q.af \
+							FROM TBQ q\
+							INNER JOIN TBQ p ON (q.data=p.data AND q.pseq=p.seq) \
+							WHERE q.LEVEL=3 AND p.LEVEL=2 AND q.af=1 AND p.af=1 GROUP BY q.no \
+				) R \
+		ORDER BY R.LEVEL'
+
+		pool.query(stmt, (error, results) => {
+			if (error) reject(error);
+			let edges = []
+			let count = results.length
+			results.forEach(row => {
+				let id = "KR-PB-" + row.id.toString().padStart(10, "0")
+				let parent = "KR-PB-" + row.parent.toString().padStart(10, "0")
+				edges.push({
+						label: "hasSubstep",
+						outNode: parent,
+						inNode: id,
+						properties: null
+				})
+
+			});
+			resolve({ count, edges });
+		});
+	});
+};
 module.exports = {
 	end,
 	getPatterns,
@@ -315,5 +347,6 @@ module.exports = {
 	getUnits,
 	getData,
 	getTests,
-	getProblems
+	getProblems,
+	getSubProblemRels
 };

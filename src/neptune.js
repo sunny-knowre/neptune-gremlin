@@ -72,7 +72,7 @@ class Neptune {
 			if(this.traversal){
 				try {
 					(async () => {
-						let result = await this.traversal.next();
+						await this.traversal.next();
 						resolve();
 					})();
 				} catch (err) {
