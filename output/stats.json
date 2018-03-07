@@ -12,18 +12,23 @@
     "Lesson": 523,
     "LevelTest::Test": 40,
     "Curriculum": 26,
+    "Problem": 212415,
     "Map": 36
   },
   "edgeCount": {
+    "hasSubstep": 160396,
     "hasTutorial": 52,
     "hasChapter": 269,
-    "hasLesson": 523,
     "hasMapNode": 1738,
+    "hasTestData": 8768,
     "hasContent": 1269,
-    "hasUnit": 30535,
     "hasMap": 36,
-    "hasData": 82854,
+    "hasData": 74086,
     "hasPattern": 3119,
+    "callsUnit": 162518,
+    "hasLesson": 523,
+    "makesProblem": 49872,
+    "hasUnit": 30535,
     "hasCurriculum": 36
   }
 }

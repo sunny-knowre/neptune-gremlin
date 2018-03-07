@@ -128,7 +128,7 @@ let loadTests = async () => {
 			const testId = data[key].id
 			values.forEach(d => {
 				edges.push({
-					label: "hasData",
+					label: "hasTestData",
 					inNode: "KR-DA-" + d.data_id.toString().padStart(10,"0"),
 					outNode: testId,
 					properties: {
