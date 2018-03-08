@@ -31,6 +31,7 @@ let _createVertexPaged = async (traverser, data, count=0) => {
 		}
 	}
 	await traverser.commit();
+	bar.tick(counter)
 	traverser.reset();
 };
 
@@ -62,6 +63,7 @@ let _createEdgePaged = async (traverser, data) => {
 		}
 	}
 	await traverser.commit();
+	bar.tick(counter)
 	traverser.reset();
 };
 
@@ -94,9 +96,9 @@ let _createEdgePagedByOut = async (traverser, data) => {
 		traverser.createEdge(row);
 	}
 	await traverser.commit();
+	bar.tick(counter - lastTick)
 	traverser.reset();
 };
-
 
 let loadPatterns = async () => {
 	let name = 'patterns'
@@ -199,20 +201,6 @@ let linkProblemSubsteps = async () => {
 	console.groupEnd()
 }
 
-let testMergeProblems = async () => {
-	const name = 'test probs merge'
-	const { count, data, edges} = await contentDB.testMergeNodes();
-	console.group();
-	console.log("\n---Start Neptune Job for " + name + "---");
-
-	const n = new Neptune();
-	await _createVertexPaged(n, data, count);
-	//await _createEdgePaged(n, edges);
-	
-	console.log("\n---End Neptune Job for " + name + "---");
-	console.groupEnd()
-}
-
 (async () => {
 	let start = Date.now()
 	console.group()
@@ -223,7 +211,6 @@ let testMergeProblems = async () => {
 	//await loadTests();
 	//await loadProblems()
 	//await linkProblemSubsteps()
-	await testMergeProblems()
 
 	let end = Date.now()
 	let total = (end - start) / 1000

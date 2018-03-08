@@ -89,10 +89,25 @@ let getTutorial = async () => {
 							.fold())
 						.fold())
 					.fold()
+	let label =  'sunnyTestEdge'
+	let outNode =  'SUNNYTEST-0000374242'
+	let inNode =  'KR-UN-0000004755'
+	let properties =  null 
+			
+	let connectQuery = __.addE(label).from_(__.V(outNode)).to(__.V(inNode))
+		for (const key in properties) {
+			if (properties.hasOwnProperty(key)) {
+				const prop = properties[key];
+				if (prop === null) {
+					connectQuery.property(key, "null");
+				} else {
+					let data = prop instanceof Array ? JSON.stringify(prop) : prop;
+					connectQuery.property(key, data);
+				}
+			}
+		}
+	traversal = g.V().hasLabel('SUNNYTEST').drop()
 
-	
-	traversal = g.V().hasLabel('SUNNYTEST').count()
-	
 	let result = await traversal.next()
 	result = result.value
 	fs.writeFile('./output/queryOutput.json',JSON.stringify(result, null, 2), function(err) {

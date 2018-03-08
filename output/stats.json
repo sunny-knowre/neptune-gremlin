@@ -5,6 +5,7 @@
     "DrillTest::Test": 265,
     "ChapterTest::Test": 144,
     "Chapter": 167,
+    "SUNNYTEST": 300,
     "Product": 1,
     "Data": 74086,
     "MapNode": 1738,
@@ -12,7 +13,7 @@
     "Lesson": 523,
     "LevelTest::Test": 40,
     "Curriculum": 26,
-    "Problem": 212415,
+    "Problem": 212450,
     "Map": 36
   },
   "edgeCount": {
@@ -21,14 +22,16 @@
     "hasChapter": 269,
     "hasMapNode": 1738,
     "hasTestData": 8768,
-    "hasContent": 1269,
+    "hasContent": 1714,
     "hasMap": 36,
     "hasData": 74086,
     "hasPattern": 3119,
     "callsUnit": 162518,
     "hasLesson": 523,
-    "makesProblem": 49872,
+    "makesProblem": 49907,
     "hasUnit": 30535,
+    "hasProblem": 76,
+    "sunnyTestEdge": 113,
     "hasCurriculum": 36
   }
 }

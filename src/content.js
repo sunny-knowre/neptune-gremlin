@@ -2,12 +2,6 @@
 
 const mysql = require("mysql");
 const config = require("../secret");
-const _ = require('lodash')
-const { structure, process } = require("gremlin-javascript");
-const DriverRemoteConnection = require("../node_modules/gremlin-javascript/lib/driver/driver-remote-connection");
-
-const connection = new DriverRemoteConnection(config.neptune.endpoint);
-var g = new structure.Graph().traversal().withRemote(connection);
 
 var pool = mysql.createPool({
 	connectionLimit: 10,
@@ -351,59 +345,6 @@ let getSubProblemRels = () => {
 	});
 };
 
-
-
-let testMergeNodes = () => {
-	return new Promise((resolve, reject) => {
-		let stmt = 
-		'SELECT	NO AS id, MODULE AS unit,PMODULE AS parent_unit, \
-				DATA AS data_id, level, seq, sinod, pseq, af \
-		FROM	TBQ \
-		WHERE	af=1 and MODULE<999999 \
-		ORDER BY DATA, LSEQ \
-		LIMIT 300'
-		
-		pool.query(stmt, (error, results) => {
-			if (error) reject(error);
-			let problems = {};
-			let edges = []
-			let count = results.length
-			results.forEach(row => {
-				let id = row.id + "";
-				let prefix = "SUNNYTEST-";
-				id = prefix + id.padStart(10, "0");
-				problems[id] = {
-					id,
-					label: "SUNNYTEST",
-					properties: {
-						level: row.level,
-						seq: row.seq,
-						pseq: row.pseq,
-						sinod: row.sinod,
-						af: row.af
-					}
-				};
-				if(row.level === 1){
-					edges.push({
-						label: "sunnyTestEdge",
-						inNode: id,
-						outNode: "KR-DA-" + row.data_id.toString().padStart(10, "0"),
-						properties: null
-					})
-				} else {
-					edges.push({
-						label: "sunnyTestEdge",
-						outNode: id,
-						inNode: "KR-UN-" + row.unit.toString().padStart(10, "0"),
-						properties: null
-					})
-				}
-			});
-			resolve({ count, data:problems, edges });
-		});
-	});
-};
-
 module.exports = {
 	end,
 	getPatterns,
@@ -412,6 +353,5 @@ module.exports = {
 	getData,
 	getTests,
 	getProblems,
-	getSubProblemRels,
-	testMergeNodes
+	getSubProblemRels
 };

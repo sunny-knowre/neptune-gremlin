@@ -18,29 +18,30 @@ class Neptune {
 	createVertex({ id, label, properties }) {
 		if (!id) throw new Error("must give vertex id");
 		if (!label) throw new Error("must give vertex label");
-
-		if (!this.traversal) {
-			this.traversal = this.g.addV(label).property(T.id, id);
-		} else {
-			this.traversal.addV(label).property(T.id, id);
-		}
+		let addQuery = __.addV(label).property(T.id, id)
 		for (const key in properties) {
 			if (properties.hasOwnProperty(key)) {
 				const prop = properties[key];
 				if (prop === null) {
-					this.traversal.property(key, "null");
+					addQuery.property(key, "null");
 				} else {
 					if(prop instanceof Array){
 						prop.forEach( row => {
 							let val = typeof row === "object" ? JSON.stringify(row) : row;
-							this.traversal.property(key, val)
+							addQuery.property(key, val)
 						})
 					} else {
-						this.traversal.property(key, prop);
+						addQuery.property(key, prop);
 					}
 				}
 			}
 		}
+		if (!this.traversal) {
+			this.traversal = this.g.V(id).fold().coalesce(__.unfold(),addQuery)
+		} else {
+			this.traversal.V(id).fold().coalesce(__.unfold(),addQuery)
+		}
+		
 		this.nodes++;
 	}
 
@@ -48,22 +49,26 @@ class Neptune {
 		if (!label) throw new Error("must give edge label");
 		if (!outNode) throw new Error("must give out vertex id");
 		if (!inNode) throw new Error("must give in vertex id");
-		if (!this.traversal) {
-			this.traversal = this.g.V(outNode).addE(label).to(__.V(inNode));
-		} else {
-			this.traversal.V(outNode).addE(label).to(__.V(inNode));
-		}
+		let connectQuery = __.addE(label).from_(__.V(outNode)).to(__.V(inNode))
 		for (const key in properties) {
 			if (properties.hasOwnProperty(key)) {
 				const prop = properties[key];
 				if (prop === null) {
-					this.traversal.property(key, "null");
+					connectQuery.property(key, "null");
 				} else {
 					let data = prop instanceof Array ? JSON.stringify(prop) : prop;
-					this.traversal.property(key, data);
+					connectQuery.property(key, data);
 				}
 			}
 		}
+		if (!this.traversal) {
+			this.traversal = this.g.V(inNode).inE(label).V(outNode).fold()
+				.coalesce(__.unfold(), connectQuery)
+		} else {
+			this.traversal.V(inNode).inE(label).V(outNode).fold()
+				.coalesce(__.unfold(), connectQuery)
+		}
+		
 		this.edges++;
 	}
 
