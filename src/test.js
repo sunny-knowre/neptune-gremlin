@@ -9,8 +9,7 @@ var g = new structure.Graph().traversal().withRemote(connection);
 const T = process.t;
 const P = process.P;
 const C = process.cardinality;
-const __ = process.statics;
-const asdf = process.pop;
+const __ = process.statics
 let traversal = null;
 
 (async () => {
@@ -67,7 +66,7 @@ let traversal = null;
 					.fold()
 
 	
-	traversal = g.V().hasLabel('Test').outE('hasData').drop()
+	traversal = g.V().hasLabel('MapNode').has('type', 'TUTORIAL').limit(1).valueMap()
 	
 	let result = await traversal.next()
 	result = result.value

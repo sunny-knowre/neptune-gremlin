@@ -198,6 +198,11 @@ let linkProblemSubsteps = async () => {
 	console.log("\n---End Neptune Job for " + name + "---");
 	console.groupEnd()
 }
+
+let loadTutorial = async () => {
+	let result = await contentDB.getTutorial()
+	
+}
 (async () => {
 	let start = Date.now()
 	console.group()
@@ -208,6 +213,7 @@ let linkProblemSubsteps = async () => {
 	//await loadTests();
 	//await loadProblems()
 	//await linkProblemSubsteps()
+	await loadTutorial()
 
 	let end = Date.now()
 	let total = (end - start) / 1000

@@ -2,6 +2,12 @@
 
 const mysql = require("mysql");
 const config = require("../secret");
+const _ = require('lodash')
+const { structure, process } = require("gremlin-javascript");
+const DriverRemoteConnection = require("../node_modules/gremlin-javascript/lib/driver/driver-remote-connection");
+
+const connection = new DriverRemoteConnection(config.neptune.endpoint);
+var g = new structure.Graph().traversal().withRemote(connection);
 
 var pool = mysql.createPool({
 	connectionLimit: 10,
@@ -257,12 +263,19 @@ let getTests = () => {
 
 let getProblems = () => {
 	return new Promise((resolve, reject) => {
-		const stmt = 
+		let stmt = 
 		'SELECT	NO AS id, MODULE AS unit,PMODULE AS parent_unit, \
 				DATA AS data_id, level, seq, sinod, pseq, af \
 		FROM	TBQ \
 		WHERE	af=1 and MODULE<999999 \
 		ORDER BY DATA, LSEQ'
+		
+		stmt = 
+		'SELECT	NO AS id, MODULE AS unit,PMODULE AS parent_unit, \
+				DATA AS data_id, level, seq, sinod, pseq, af \
+		FROM	TBQ \
+		WHERE 	NO in (173176,173177,173178,173179,173180,173181,173182,173183,173184,173185,173186, \
+					   173187,173188,173189, 173193,173194,173195,173192,173190,173191,173196,173197,173198 )'
 
 		pool.query(stmt, (error, results) => {
 			if (error) reject(error);
@@ -304,6 +317,32 @@ let getProblems = () => {
 		});
 	});
 };
+
+let getTutorial = async () => {
+		const query = await g.V().hasLabel('MapNode').has('type', 'TUTORIAL').values('content_id').fold().next()
+		let result = []
+		query.value.forEach( row => {
+			result = _.union(result, JSON.parse(row))
+		})
+		let final = []
+		for (let row of result) {
+			let id = "KR-PB-" + row.toString().padStart(10, "0");
+			
+			let traversal = await g.V(id).next()
+			let found = traversal.value
+			if(!found){
+				final.push(row)
+			}else {
+				
+			}
+		}
+
+		console.log('query', final.length)
+		console.log('filtered', JSON.stringify(final))		
+
+		return { count: final.length, data:final }
+
+} 
 
 let getSubProblemRels = () => {
 	return new Promise((resolve, reject) => {
@@ -348,5 +387,6 @@ module.exports = {
 	getData,
 	getTests,
 	getProblems,
-	getSubProblemRels
+	getSubProblemRels,
+	getTutorial
 };
