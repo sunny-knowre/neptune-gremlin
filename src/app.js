@@ -1,7 +1,7 @@
 "use strict";
 const contentDB = require("./content");
 const Neptune = require("./neptune");
-const paging_size = 500;
+const paging_size = 200;
 const ProgressBar = require('progress')
 
 let _createVertexPaged = async (traverser, data, count=0) => {
@@ -199,10 +199,20 @@ let linkProblemSubsteps = async () => {
 	console.groupEnd()
 }
 
-let loadTutorial = async () => {
-	let result = await contentDB.getTutorial()
+let testMergeProblems = async () => {
+	const name = 'test probs merge'
+	const { count, data, edges} = await contentDB.testMergeNodes();
+	console.group();
+	console.log("\n---Start Neptune Job for " + name + "---");
+
+	const n = new Neptune();
+	await _createVertexPaged(n, data, count);
+	//await _createEdgePaged(n, edges);
 	
+	console.log("\n---End Neptune Job for " + name + "---");
+	console.groupEnd()
 }
+
 (async () => {
 	let start = Date.now()
 	console.group()
@@ -213,7 +223,7 @@ let loadTutorial = async () => {
 	//await loadTests();
 	//await loadProblems()
 	//await linkProblemSubsteps()
-	await loadTutorial()
+	await testMergeProblems()
 
 	let end = Date.now()
 	let total = (end - start) / 1000

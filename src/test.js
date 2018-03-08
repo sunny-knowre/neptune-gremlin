@@ -12,6 +12,31 @@ const C = process.cardinality;
 const __ = process.statics
 let traversal = null;
 
+let getTutorial = async () => {
+	const query = await g.V().hasLabel('Tutorial').values('problem_list').fold().next()
+	let result = []
+	query.value.forEach( row => {
+		result = _.union(result, JSON.parse(row))
+	})
+	
+	let final = []
+	for (let row of result) {
+		let id = "KR-PB-" + row.toString().padStart(10, "0");
+		
+		let traversal = await g.V(id).next()
+		let found = traversal.value
+		if(!found){
+			console.log('not found', id)
+		}else {
+			console.log('found', id)
+		}
+	} 
+
+	console.log(final)
+
+	return
+
+} 
 (async () => {
 	console.group('Test Output');
 	let start = Date.now()
@@ -66,7 +91,7 @@ let traversal = null;
 					.fold()
 
 	
-	traversal = g.V().hasLabel('MapNode').has('type', 'TUTORIAL').limit(1).valueMap()
+	traversal = g.V().hasLabel('SUNNYTEST').count()
 	
 	let result = await traversal.next()
 	result = result.value

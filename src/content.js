@@ -267,16 +267,13 @@ let getProblems = () => {
 		'SELECT	NO AS id, MODULE AS unit,PMODULE AS parent_unit, \
 				DATA AS data_id, level, seq, sinod, pseq, af \
 		FROM	TBQ \
-		WHERE	af=1 and MODULE<999999 \
+		WHERE	(af=1 and MODULE<999999 ) OR \
+				NO in (173176,173177,173178,173179,173180,173181,173182,173183,173184,173185,173186, \
+					173187,173188,173189, 173193,173194,173195,173192,173190,173191,173196,173197,173198, \
+					155434, 155435, 155437, 155438, 155442, 155440, 155441, 155443, \
+					155436, 155444, 155439, 155445 ) \
 		ORDER BY DATA, LSEQ'
 		
-		stmt = 
-		'SELECT	NO AS id, MODULE AS unit,PMODULE AS parent_unit, \
-				DATA AS data_id, level, seq, sinod, pseq, af \
-		FROM	TBQ \
-		WHERE 	NO in (173176,173177,173178,173179,173180,173181,173182,173183,173184,173185,173186, \
-					   173187,173188,173189, 173193,173194,173195,173192,173190,173191,173196,173197,173198 )'
-
 		pool.query(stmt, (error, results) => {
 			if (error) reject(error);
 			let problems = {};
@@ -318,32 +315,6 @@ let getProblems = () => {
 	});
 };
 
-let getTutorial = async () => {
-		const query = await g.V().hasLabel('MapNode').has('type', 'TUTORIAL').values('content_id').fold().next()
-		let result = []
-		query.value.forEach( row => {
-			result = _.union(result, JSON.parse(row))
-		})
-		let final = []
-		for (let row of result) {
-			let id = "KR-PB-" + row.toString().padStart(10, "0");
-			
-			let traversal = await g.V(id).next()
-			let found = traversal.value
-			if(!found){
-				final.push(row)
-			}else {
-				
-			}
-		}
-
-		console.log('query', final.length)
-		console.log('filtered', JSON.stringify(final))		
-
-		return { count: final.length, data:final }
-
-} 
-
 let getSubProblemRels = () => {
 	return new Promise((resolve, reject) => {
 		const stmt = 
@@ -379,6 +350,60 @@ let getSubProblemRels = () => {
 		});
 	});
 };
+
+
+
+let testMergeNodes = () => {
+	return new Promise((resolve, reject) => {
+		let stmt = 
+		'SELECT	NO AS id, MODULE AS unit,PMODULE AS parent_unit, \
+				DATA AS data_id, level, seq, sinod, pseq, af \
+		FROM	TBQ \
+		WHERE	af=1 and MODULE<999999 \
+		ORDER BY DATA, LSEQ \
+		LIMIT 300'
+		
+		pool.query(stmt, (error, results) => {
+			if (error) reject(error);
+			let problems = {};
+			let edges = []
+			let count = results.length
+			results.forEach(row => {
+				let id = row.id + "";
+				let prefix = "SUNNYTEST-";
+				id = prefix + id.padStart(10, "0");
+				problems[id] = {
+					id,
+					label: "SUNNYTEST",
+					properties: {
+						level: row.level,
+						seq: row.seq,
+						pseq: row.pseq,
+						sinod: row.sinod,
+						af: row.af
+					}
+				};
+				if(row.level === 1){
+					edges.push({
+						label: "sunnyTestEdge",
+						inNode: id,
+						outNode: "KR-DA-" + row.data_id.toString().padStart(10, "0"),
+						properties: null
+					})
+				} else {
+					edges.push({
+						label: "sunnyTestEdge",
+						outNode: id,
+						inNode: "KR-UN-" + row.unit.toString().padStart(10, "0"),
+						properties: null
+					})
+				}
+			});
+			resolve({ count, data:problems, edges });
+		});
+	});
+};
+
 module.exports = {
 	end,
 	getPatterns,
@@ -388,5 +413,5 @@ module.exports = {
 	getTests,
 	getProblems,
 	getSubProblemRels,
-	getTutorial
+	testMergeNodes
 };
