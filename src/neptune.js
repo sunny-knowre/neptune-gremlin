@@ -66,6 +66,31 @@ class Neptune {
 		}
 		this.edges++;
 	}
+	updateVertex ({id, properties} ){
+		if (!id) throw new Error("must give vertex id");
+		if (!properties) throw new Error("must give properties to update")
+		let keys = Object.keys(properties)
+
+		if (!this.traversal) {
+			this.traversal = this.g.V(id).sideEffect(__.properties(...keys).drop())
+		} else {
+			this.traversal.V(id).sideEffect(__.properties(...keys).drop())
+		}
+		for (const key in properties) {
+			if (properties.hasOwnProperty(key)) {
+				const prop = properties[key];
+				if(prop instanceof Array){
+					prop.forEach( row => {
+						let val = typeof row === "object" ? JSON.stringify(row) : row;
+						this.traversal.property(key, val)
+					})
+				} else {
+					this.traversal.property(key, prop);
+				}
+			}
+		}
+		this.nodes++; 
+	}
 
 	findOrMakeVertex({ id, label, properties }) {
 		if (!id) throw new Error("must give vertex id");

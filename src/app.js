@@ -1,8 +1,38 @@
 "use strict";
 const contentDB = require("./content");
 const Neptune = require("./neptune");
-const paging_size = 500;
+const paging_size = 1;
 const ProgressBar = require('progress')
+
+let _updatePropertiesPaged = async( traverser, data, count=0) => {
+	let counter = 1;
+	console.log()
+	let bar = new ProgressBar('  updating :total vertices [:bar] :rate nodes/s :percent :etas', {
+		complete: '=',
+		incomplete: ' ',
+		width: 40,
+		total: count
+	});
+	for (const key in data) {
+		if (data.hasOwnProperty(key)) {
+			counter++;
+			const row = data[key];
+			traverser.updateVertex({
+				id: row.id,
+				properties: row.properties
+			});
+			if (counter > paging_size) {
+				await traverser.commit();
+				bar.tick(counter)
+				counter = 1;
+				traverser.newTraversal();
+			}
+		}
+	}
+	await traverser.commit();
+	bar.tick(counter)
+	traverser.reset();
+}
 
 let _createVertexPaged = async (traverser, data, count=0) => {
 	let counter = 1;
@@ -201,6 +231,19 @@ let linkProblemSubsteps = async () => {
 	console.groupEnd()
 }
 
+let updateProblemContents = async () => {
+	const name = 'problem contents'
+	const { count, data } = await contentDB.getProblemContents();
+	console.group();
+	console.log("\n---Start Neptune Job for " + name + "---");
+	
+	const n = new Neptune();
+	await _updatePropertiesPaged(n, data, count);
+	
+	console.log("\n---End Neptune Job for " + name + "---");
+	console.groupEnd()
+}
+
 (async () => {
 	let start = Date.now()
 	console.group()
@@ -209,8 +252,9 @@ let linkProblemSubsteps = async () => {
 	//await loadData();
 	//await loadPatterns()
 	//await loadTests();
-	await loadProblems()
-	await linkProblemSubsteps()
+	//await loadProblems()
+	//await linkProblemSubsteps()
+	await updateProblemContents()
 
 	let end = Date.now()
 	let total = (end - start) / 1000

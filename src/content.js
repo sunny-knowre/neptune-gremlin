@@ -345,6 +345,35 @@ let getSubProblemRels = () => {
 	});
 };
 
+let getProblemContents = () => {
+	return new Promise((resolve, reject) => {
+		let stmt = 
+		'SELECT	NO AS id, question, solution \
+		FROM	TBQ \
+		WHERE	af=1 and MODULE<999999 and NO<=50000 \
+		ORDER BY DATA, LSEQ'
+		pool.query(stmt, (error, results) => {
+			if (error) reject(error);
+			let problems = {};
+			let count = results.length
+			results.forEach(row => {
+				let id = row.id + "";
+				let prefix = "KR-PB-";
+				id = prefix + id.padStart(10, "0");
+				problems[id] = {
+					id,
+					properties: {
+						question: row.question,
+						solution: row.solution,
+					}
+				};
+				
+			});
+			resolve({ count, data:problems });
+		});
+	});
+};
+
 module.exports = {
 	end,
 	getPatterns,
@@ -353,5 +382,6 @@ module.exports = {
 	getData,
 	getTests,
 	getProblems,
-	getSubProblemRels
+	getSubProblemRels,
+	getProblemContents
 };
