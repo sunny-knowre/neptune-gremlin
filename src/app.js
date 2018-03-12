@@ -1,7 +1,7 @@
 "use strict";
 const contentDB = require("./content");
 const Neptune = require("./neptune");
-const paging_size = 200;
+const paging_size = 500;
 const ProgressBar = require('progress')
 
 let _createVertexPaged = async (traverser, data, count=0) => {
@@ -209,8 +209,8 @@ let linkProblemSubsteps = async () => {
 	//await loadData();
 	//await loadPatterns()
 	//await loadTests();
-	//await loadProblems()
-	//await linkProblemSubsteps()
+	await loadProblems()
+	await linkProblemSubsteps()
 
 	let end = Date.now()
 	let total = (end - start) / 1000

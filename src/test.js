@@ -1,6 +1,7 @@
 "use strict";
 const fs = require('fs')
 const config = require("../secret");
+const _ = require('lodash')
 const { structure, process } = require("gremlin-javascript");
 const DriverRemoteConnection = require("../node_modules/gremlin-javascript/lib/driver/driver-remote-connection");
 
@@ -10,6 +11,8 @@ const T = process.t;
 const P = process.P;
 const C = process.cardinality;
 const __ = process.statics
+const Scope = process.scope
+
 let traversal = null;
 
 let getTutorial = async () => {
@@ -72,49 +75,22 @@ let getTutorial = async () => {
 	//console.log(lessonId.value)
 	//traversal = g.V(lessonId.value).addE('hasPatternTest').to(__.V().hasLabel('PatternTest')).property('seq', 1)
 
-	let lessonId = 'KR-LS-0000013358'
-	let level = 'S_HIGH'
-	traversal = g.V("KR-LS-0000003358")
-				.outE('hasPattern').order().by(__.values('seq')).as('pseq').inV()
-					.where(__.out('hasUnit').out().has('student_level'))
-					.project("patterns").by(__.project("id","name","seq", "units")
-						.by(__.id())
-						.by(__.values('name'))
-						.by(__.select('pseq').values('seq'))
-						.by(__.outE().order().by(__.values('seq')).as('seq').inV().dedup().project("id","name","seq", "datas")
-							.by(__.id())
-							.by(__.values('name'))
-							.by(__.select('seq').values('seq'))
-							.by(__.out().has('student_level').id().fold())
-							.fold())
-						.fold())
-					.fold()
-	let label =  'sunnyTestEdge'
-	let outNode =  'SUNNYTEST-0000374242'
-	let inNode =  'KR-UN-0000004755'
-	let properties =  null 
-			
-	let connectQuery = __.addE(label).from_(__.V(outNode)).to(__.V(inNode))
-		for (const key in properties) {
-			if (properties.hasOwnProperty(key)) {
-				const prop = properties[key];
-				if (prop === null) {
-					connectQuery.property(key, "null");
-				} else {
-					let data = prop instanceof Array ? JSON.stringify(prop) : prop;
-					connectQuery.property(key, data);
-				}
-			}
-		}
-	traversal = g.V().hasLabel('SUNNYTEST').drop()
+	traversal = g.V().hasLabel('Tutorial').values('problem_list').store('s').cap('s').order(Scope.local)
+	
+	try {
+		let result = await traversal.next()
+		console.log(result.value)
+	} catch (err) {
+		console.log(err);
+	}
+	
+	
 
-	let result = await traversal.next()
-	result = result.value
-	fs.writeFile('./output/queryOutput.json',JSON.stringify(result, null, 2), function(err) {
+	/* fs.writeFile('./output/queryOutput.json',JSON.stringify(result, null, 2), function(err) {
 		if(err) console.log(err)
 		else console.log('query output saved')
 	})
-	
+	*/
 	let total = (Date.now() - start)/1000
 	console.log('query time: ' + total + 's')
 	console.groupEnd(); 

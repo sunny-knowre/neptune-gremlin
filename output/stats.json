@@ -5,7 +5,6 @@
     "DrillTest::Test": 265,
     "ChapterTest::Test": 144,
     "Chapter": 167,
-    "SUNNYTEST": 300,
     "Product": 1,
     "Data": 74086,
     "MapNode": 1738,
@@ -17,7 +16,7 @@
     "Map": 36
   },
   "edgeCount": {
-    "hasSubstep": 160396,
+    "hasSubstep": 162401,
     "hasTutorial": 52,
     "hasChapter": 269,
     "hasMapNode": 1738,
@@ -29,9 +28,8 @@
     "callsUnit": 162518,
     "hasLesson": 523,
     "makesProblem": 49907,
-    "hasUnit": 30535,
-    "hasProblem": 76,
-    "sunnyTestEdge": 113,
+    "hasUnit": 30269,
+    "hasProblem": 192,
     "hasCurriculum": 36
   }
 }
