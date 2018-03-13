@@ -79,13 +79,17 @@ class Neptune {
 		for (const key in properties) {
 			if (properties.hasOwnProperty(key)) {
 				const prop = properties[key];
-				if(prop instanceof Array){
-					prop.forEach( row => {
-						let val = typeof row === "object" ? JSON.stringify(row) : row;
-						this.traversal.property(key, val)
-					})
+				if (prop === null) {
+					this.traversal.property(key, "null");
 				} else {
-					this.traversal.property(key, prop);
+					if(prop instanceof Array){
+						prop.forEach( row => {
+							let val = typeof row === "object" ? JSON.stringify(row) : row;
+							this.traversal.property(key, val)
+						})
+					} else {
+						this.traversal.property(key, prop);
+					}
 				}
 			}
 		}

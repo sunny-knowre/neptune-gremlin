@@ -1,45 +1,28 @@
 {
   "value": [
-    [
-      "KR-TU-0000000005",
-      "[228821,228822,228823,228824,228825,228826,228827,228828,228829,228830,228831,228832,228833,228834,229260]"
-    ],
-    [
-      "KR-TU-0000000009",
-      "[173176,173177,173178,173179,173180,173181,173182,173183,173184,173185,173186,173187,173188,173189,173193,173194,173195]"
-    ],
-    [
-      "KR-TU-0000000011",
-      "[155434,155435,155437,155438,155442]"
-    ],
-    [
-      "KR-TU-0000000013",
-      "[155434,155435,155437,155440,155441,155443]"
-    ],
-    [
-      "KR-TU-0000000015",
-      "[155434,155435,155436,155437,155440,155444]"
-    ],
-    [
-      "KR-TU-0000000007",
-      "[173176,173177,173178,173179,173180,173181,173182,173183,173184,173185,173186,173187,173188,173189,173192,173193,173194,173195]"
-    ],
-    [
-      "KR-TU-0000000010",
-      "[173176,173177,173178,173179,173180,173181,173182,173183,173184,173185,173186,173187,173188,173189,173198]"
-    ],
-    [
-      "KR-TU-0000000012",
-      "[155434,155435,155437,155439,155440,155445]"
-    ],
-    [
-      "KR-TU-0000000014",
-      "[155434,155435,155437,155439,155440]"
-    ],
-    [
-      "KR-TU-0000000016",
-      "[155434,155435,155436,155437,155439,155440]"
-    ]
+    {
+      "solution": [
+        "[{\"type\":\"Static\",\"mode\":\"math\",\"value\":\"46\",\"option\":{\"ds\":\"46\"}},{\"type\":\"Static\",\"mode\":\"math\",\"value\":\"=\"},{\"type\":\"Static\",\"mode\":\"math\",\"value\":\"1\\\\times 46\",\"option\":{\"ds\":\"1\\\\times 46\"}},{\"type\":\"Static\",\"mode\":\"math\",\"value\":\"=\"},{\"type\":\"Static\",\"mode\":\"math\",\"value\":\"2\\\\times 23\",\"option\":{\"ds\":\"2\\\\times 23\"}},{\"type\":\"Static\",\"mode\":\"newline\",\"value\":\"\"},{\"type\":\"Block\",\"option\":{\"mode\":\"normal\"},\"value\":[{\"type\":\"Static\",\"mode\":\"illust\",\"value\":\"conclusion_dot.svg\"},{\"type\":\"Static\",\"mode\":\"text\",\"value\":\" \"},{\"type\":\"Static\",\"mode\":\"math\",\"value\":\"1\",\"option\":{\"ds\":\"1\"}},{\"type\":\"Static\",\"mode\":\"text\",\"value\":\", \"},{\"type\":\"Static\",\"mode\":\"math\",\"value\":\"2\",\"option\":{\"ds\":\"2\"}},{\"type\":\"Static\",\"mode\":\"text\",\"value\":\", \"},{\"type\":\"Static\",\"mode\":\"math\",\"value\":\"23\",\"option\":{\"ds\":\"23\"}},{\"type\":\"Static\",\"mode\":\"text\",\"value\":\", \"},{\"type\":\"Static\",\"mode\":\"math\",\"value\":\"46\",\"option\":{\"ds\":\"46\"}}]}]"
+      ],
+      "question": [
+        "[{\"type\":\"Block\",\"option\":{\"mode\":\"answer\"},\"value\":[{\"type\":\"Static\",\"mode\":\"math\",\"value\":\"46\",\"option\":{\"ds\":\"46\"}},{\"type\":\"Static\",\"mode\":\"text\",\"value\":\"의 약수를 모두 구하여라.\"},{\"type\":\"Block\",\"option\":{\"mode\":\"normal\",\"width\":100,\"align\":\"center\",\"textAlign\":\"center\",\"title\":\"\",\"border\":false},\"value\":[]},{\"type\":\"Block\",\"option\":{\"mode\":\"normal\",\"width\":100,\"align\":\"right\",\"textAlign\":\"right\",\"title\":\"\",\"border\":false},\"value\":[{\"type\":\"Input\",\"mode\":\"math\",\"value\":\"1\",\"option\":{\"order\":1,\"width\":\"2\",\"height\":1,\"answerType\":\"82\",\"lacoType\":\"55\",\"grammar\":\"n_digit_exp_nopie\",\"whitelist\":[],\"blacklist\":[]}},{\"type\":\"Static\",\"mode\":\"text\",\"value\":\", \"},{\"type\":\"Input\",\"mode\":\"math\",\"value\":\"2\",\"option\":{\"order\":1,\"width\":\"2\",\"height\":1,\"answerType\":\"82\",\"lacoType\":\"55\",\"grammar\":\"n_digit_exp_nopie\"}},{\"type\":\"Static\",\"mode\":\"text\",\"value\":\", \"},{\"type\":\"Input\",\"mode\":\"math\",\"value\":\"23\",\"option\":{\"order\":1,\"width\":\"2\",\"height\":1,\"answerType\":\"82\",\"lacoType\":\"55\",\"grammar\":\"n_digit_exp_nopie\"}},{\"type\":\"Static\",\"mode\":\"text\",\"value\":\", \"},{\"type\":\"Input\",\"mode\":\"math\",\"value\":\"46\",\"option\":{\"order\":1,\"width\":\"2\",\"height\":1,\"answerType\":\"82\",\"lacoType\":\"55\",\"grammar\":\"n_digit_exp_nopie\"}}]}]}]"
+      ],
+      "af": [
+        1
+      ],
+      "level": [
+        3
+      ],
+      "sinod": [
+        1
+      ],
+      "pseq": [
+        3
+      ],
+      "seq": [
+        4
+      ]
+    }
   ],
   "done": false
 }

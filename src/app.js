@@ -1,7 +1,7 @@
 "use strict";
 const contentDB = require("./content");
 const Neptune = require("./neptune");
-const paging_size = 1;
+const paging_size = 100;
 const ProgressBar = require('progress')
 
 let _updatePropertiesPaged = async( traverser, data, count=0) => {
@@ -232,16 +232,24 @@ let linkProblemSubsteps = async () => {
 }
 
 let updateProblemContents = async () => {
-	const name = 'problem contents'
-	const { count, data } = await contentDB.getProblemContents();
-	console.group();
-	console.log("\n---Start Neptune Job for " + name + "---");
+	let inc = 5000
+	let counter = 1
+	while (counter < 380000){
+		let start = counter+1
+		let end = counter+inc
+		const name = 'problem contents from id: ' + start + ' to ' + end
+		const { count, data } = await contentDB.getProblemContents(start,end);
+		console.group();
+		console.log("\n---Start Neptune Job for " + name + "---");
+		
+		const n = new Neptune();
+		await _updatePropertiesPaged(n, data, count);
+		
+		console.log("\n---End Neptune Job for " + name + "---");
+		console.groupEnd()
+		counter = end
+	}
 	
-	const n = new Neptune();
-	await _updatePropertiesPaged(n, data, count);
-	
-	console.log("\n---End Neptune Job for " + name + "---");
-	console.groupEnd()
 }
 
 (async () => {

@@ -53,22 +53,23 @@ let getTutorial = async () => {
 	//traversal = g.V().hasLabel("Data").limit(1).valueMap(true)
 	//traversal = g.V().hasLabel("Product").outE('hasMap').inV().id()
 
-	traversal = g.V('KR-PB-0000288211').valueMap(true)
+	traversal = g.V().hasLabel('Problem').limit(1).valueMap().fold()
 	
 	try {
 		let result = await traversal.next()
-		console.log(result.value)
+	
+		fs.writeFile('./output/queryOutput.json',JSON.stringify(result, null, 2), function(err) {
+			if(err) console.log(err)
+			else console.log('query output saved')
+		})
+		
 	} catch (err) {
 		console.log(err);
 	}
 	
 	
 
-	/* fs.writeFile('./output/queryOutput.json',JSON.stringify(result, null, 2), function(err) {
-		if(err) console.log(err)
-		else console.log('query output saved')
-	})
-	*/
+	
 	let total = (Date.now() - start)/1000
 	console.log('query time: ' + total + 's')
 	console.groupEnd(); 

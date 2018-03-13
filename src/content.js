@@ -345,14 +345,14 @@ let getSubProblemRels = () => {
 	});
 };
 
-let getProblemContents = () => {
+let getProblemContents = (start,end) => {
 	return new Promise((resolve, reject) => {
 		let stmt = 
 		'SELECT	NO AS id, question, solution \
 		FROM	TBQ \
-		WHERE	af=1 and MODULE<999999 and NO<=50000 \
+		WHERE	af=1 and MODULE<999999 and NO between ? and ? \
 		ORDER BY DATA, LSEQ'
-		pool.query(stmt, (error, results) => {
+		pool.query(stmt, [start, end],(error, results) => {
 			if (error) reject(error);
 			let problems = {};
 			let count = results.length
