@@ -52,11 +52,32 @@ let getTutorial = async () => {
 	//traversal = g.V().hasLabel("Product").valueMap(true)
 	//traversal = g.V().hasLabel("Data").limit(1).valueMap(true)
 	//traversal = g.V().hasLabel("Product").outE('hasMap').inV().id()
-
-	traversal = g.V().hasLabel('Problem').limit(1).valueMap().fold()
+	34899, 51969, 51974, 51979, 51991, 51996, 52000, 52102, 52111, 52121, 52127, 52134, 52141, 52147, 52156, 52161, 52166, 52169, 52176, 52181, 52185, 52193, 52199, 52211, 52222, 52232, 53257, 53265, 53284, 53300, 53304 
+	let lessonId = 'KR-LS-0000052198'
+	let level = 'S_LOW'
+	traversal = g.V(lessonId)
+	.outE('hasPattern').order().by(__.values('seq')).as('pseq').inV()
+		.where(__.out('hasUnit').out('hasData').has('student_level',level).count().is(P.gt(0)))
+		.project("id","name","seq", "units" )
+			.by(__.id())
+			.by(__.values('name'))
+			.by(__.select('pseq').values('seq'))
+			.by(__.outE('hasUnit').order().by(__.values('seq')).as('seq').inV().dedup()
+				.where(__.out().has('student_level',level).count().is(P.gt(0)))
+				.project("id","name","seq", "datas")
+					.by(__.id())
+					.by(__.values('name'))
+					.by(__.select('seq').values('seq'))
+					.by(__.out().has('student_level',level).id()
+				.fold())
+			.fold())
+		.fold()
+		
+	
 	
 	try {
 		let result = await traversal.next()
+		result = result.value
 	
 		fs.writeFile('./output/queryOutput.json',JSON.stringify(result, null, 2), function(err) {
 			if(err) console.log(err)

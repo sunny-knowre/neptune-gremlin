@@ -18,16 +18,20 @@ let getPatternUnitRel = () => {
 	return new Promise((resolve, reject) => {
 		const stmt =
 			'SELECT		S.no id, P.no patternId, R.M_NO unitId, S.seq seq \
-			FROM		TBC S LEFT join \
-						TBC P on S.p_no=P.no left join \
-						TBC_RELATION R on R.s_no=S.no \
+			FROM		TBC L INNER JOIN \
+						TBC P on P.P_NO=L.NO INNER JOIN \
+						TBC S on S.P_NO=P.NO INNER JOIN \
+						TBC_RELATION R on R.S_NO=S.NO \
 			WHERE 		S.lev=4 and R.type=2 \
+			AND     	L.name not like "%보류%" \
+			AND     	L.name not like "%삭제%" \
 			AND     	P.name not like "%보류%" \
 			AND     	P.name not like "%삭제%" \
 			AND     	S.name not like "%보류%" \
 			AND     	S.name not like "%삭제%" \
 			AND 		R.M_NO is not null \
-			ORDER BY	P.no, S.seq' 
+			GROUP BY   	P.NO,R.M_NO \
+			ORDER BY	P.no, S.seq'
 
 			pool.query(stmt, (error, results) => {
 				if (error) reject(error);

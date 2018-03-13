@@ -70,7 +70,7 @@ class Neptune {
 		if (!id) throw new Error("must give vertex id");
 		if (!properties) throw new Error("must give properties to update")
 		let keys = Object.keys(properties)
-
+		
 		if (!this.traversal) {
 			this.traversal = this.g.V(id).sideEffect(__.properties(...keys).drop())
 		} else {
@@ -130,6 +130,7 @@ class Neptune {
 		if (!label) throw new Error("must give edge label");
 		if (!outNode) throw new Error("must give out vertex id");
 		if (!inNode) throw new Error("must give in vertex id");
+		console.log(inNode, outNode,properties)
 		let connectQuery = __.addE(label).from_(__.V(outNode)).to(__.V(inNode))
 		for (const key in properties) {
 			if (properties.hasOwnProperty(key)) {

@@ -1,28 +1,258 @@
-{
-  "value": [
-    {
-      "solution": [
-        "[{\"type\":\"Static\",\"mode\":\"math\",\"value\":\"46\",\"option\":{\"ds\":\"46\"}},{\"type\":\"Static\",\"mode\":\"math\",\"value\":\"=\"},{\"type\":\"Static\",\"mode\":\"math\",\"value\":\"1\\\\times 46\",\"option\":{\"ds\":\"1\\\\times 46\"}},{\"type\":\"Static\",\"mode\":\"math\",\"value\":\"=\"},{\"type\":\"Static\",\"mode\":\"math\",\"value\":\"2\\\\times 23\",\"option\":{\"ds\":\"2\\\\times 23\"}},{\"type\":\"Static\",\"mode\":\"newline\",\"value\":\"\"},{\"type\":\"Block\",\"option\":{\"mode\":\"normal\"},\"value\":[{\"type\":\"Static\",\"mode\":\"illust\",\"value\":\"conclusion_dot.svg\"},{\"type\":\"Static\",\"mode\":\"text\",\"value\":\" \"},{\"type\":\"Static\",\"mode\":\"math\",\"value\":\"1\",\"option\":{\"ds\":\"1\"}},{\"type\":\"Static\",\"mode\":\"text\",\"value\":\", \"},{\"type\":\"Static\",\"mode\":\"math\",\"value\":\"2\",\"option\":{\"ds\":\"2\"}},{\"type\":\"Static\",\"mode\":\"text\",\"value\":\", \"},{\"type\":\"Static\",\"mode\":\"math\",\"value\":\"23\",\"option\":{\"ds\":\"23\"}},{\"type\":\"Static\",\"mode\":\"text\",\"value\":\", \"},{\"type\":\"Static\",\"mode\":\"math\",\"value\":\"46\",\"option\":{\"ds\":\"46\"}}]}]"
-      ],
-      "question": [
-        "[{\"type\":\"Block\",\"option\":{\"mode\":\"answer\"},\"value\":[{\"type\":\"Static\",\"mode\":\"math\",\"value\":\"46\",\"option\":{\"ds\":\"46\"}},{\"type\":\"Static\",\"mode\":\"text\",\"value\":\"의 약수를 모두 구하여라.\"},{\"type\":\"Block\",\"option\":{\"mode\":\"normal\",\"width\":100,\"align\":\"center\",\"textAlign\":\"center\",\"title\":\"\",\"border\":false},\"value\":[]},{\"type\":\"Block\",\"option\":{\"mode\":\"normal\",\"width\":100,\"align\":\"right\",\"textAlign\":\"right\",\"title\":\"\",\"border\":false},\"value\":[{\"type\":\"Input\",\"mode\":\"math\",\"value\":\"1\",\"option\":{\"order\":1,\"width\":\"2\",\"height\":1,\"answerType\":\"82\",\"lacoType\":\"55\",\"grammar\":\"n_digit_exp_nopie\",\"whitelist\":[],\"blacklist\":[]}},{\"type\":\"Static\",\"mode\":\"text\",\"value\":\", \"},{\"type\":\"Input\",\"mode\":\"math\",\"value\":\"2\",\"option\":{\"order\":1,\"width\":\"2\",\"height\":1,\"answerType\":\"82\",\"lacoType\":\"55\",\"grammar\":\"n_digit_exp_nopie\"}},{\"type\":\"Static\",\"mode\":\"text\",\"value\":\", \"},{\"type\":\"Input\",\"mode\":\"math\",\"value\":\"23\",\"option\":{\"order\":1,\"width\":\"2\",\"height\":1,\"answerType\":\"82\",\"lacoType\":\"55\",\"grammar\":\"n_digit_exp_nopie\"}},{\"type\":\"Static\",\"mode\":\"text\",\"value\":\", \"},{\"type\":\"Input\",\"mode\":\"math\",\"value\":\"46\",\"option\":{\"order\":1,\"width\":\"2\",\"height\":1,\"answerType\":\"82\",\"lacoType\":\"55\",\"grammar\":\"n_digit_exp_nopie\"}}]}]}]"
-      ],
-      "af": [
-        1
-      ],
-      "level": [
-        3
-      ],
-      "sinod": [
-        1
-      ],
-      "pseq": [
-        3
-      ],
-      "seq": [
-        4
-      ]
-    }
-  ],
-  "done": false
-}
+[
+  {
+    "id": "KR-PN-0000053881",
+    "name": "그래프 나타내기",
+    "seq": 1,
+    "units": [
+      {
+        "id": "KR-UN-0000022262",
+        "name": "표를 좌표평면에 나타내기",
+        "seq": 1,
+        "datas": [
+          "KR-DA-0000062798",
+          "KR-DA-0000062789",
+          "KR-DA-0000062810",
+          "KR-DA-0000062801",
+          "KR-DA-0000062799",
+          "KR-DA-0000062811",
+          "KR-DA-0000062800",
+          "KR-DA-0000062788"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "KR-PN-0000052438",
+    "name": "그래프의 이해",
+    "seq": 2,
+    "units": [
+      {
+        "id": "KR-UN-0000022270",
+        "name": "그래프의 변화에 대한 설명",
+        "seq": 1,
+        "datas": [
+          "KR-DA-0000059904",
+          "KR-DA-0000059905",
+          "KR-DA-0000059903",
+          "KR-DA-0000059902",
+          "KR-DA-0000059900",
+          "KR-DA-0000059901",
+          "KR-DA-0000059906",
+          "KR-DA-0000059899"
+        ]
+      },
+      {
+        "id": "KR-UN-0000022272",
+        "name": "물의 높이에 관한 그래프",
+        "seq": 3,
+        "datas": [
+          "KR-DA-0000062941",
+          "KR-DA-0000062945",
+          "KR-DA-0000062940",
+          "KR-DA-0000062943",
+          "KR-DA-0000062946",
+          "KR-DA-0000062944",
+          "KR-DA-0000062942",
+          "KR-DA-0000062939"
+        ]
+      },
+      {
+        "id": "KR-UN-0000022273",
+        "name": "물의 높이에 관한 그래프",
+        "seq": 4,
+        "datas": [
+          "KR-DA-0000062950",
+          "KR-DA-0000064311",
+          "KR-DA-0000062954",
+          "KR-DA-0000062948",
+          "KR-DA-0000062953",
+          "KR-DA-0000062951",
+          "KR-DA-0000062949",
+          "KR-DA-0000062952",
+          "KR-DA-0000062947"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "KR-PN-0000053888",
+    "name": "그래프 읽기 - 직선",
+    "seq": 3,
+    "units": [
+      {
+        "id": "KR-UN-0000022283",
+        "name": "직선 그래프에서 조건에 알맞은 값 구하기",
+        "seq": 2,
+        "datas": [
+          "KR-DA-0000060013",
+          "KR-DA-0000060018",
+          "KR-DA-0000060014",
+          "KR-DA-0000060012",
+          "KR-DA-0000060016",
+          "KR-DA-0000060017",
+          "KR-DA-0000060015",
+          "KR-DA-0000060011"
+        ]
+      },
+      {
+        "id": "KR-UN-0000022286",
+        "name": "곡선 그래프에서 일정한 구간",
+        "seq": 16,
+        "datas": [
+          "KR-DA-0000060811",
+          "KR-DA-0000060816",
+          "KR-DA-0000060815",
+          "KR-DA-0000060812",
+          "KR-DA-0000060813",
+          "KR-DA-0000060810",
+          "KR-DA-0000060814",
+          "KR-DA-0000060809"
+        ]
+      },
+      {
+        "id": "KR-UN-0000022287",
+        "name": "곡선 그래프에서 일정한 구간",
+        "seq": 18,
+        "datas": [
+          "KR-DA-0000061638",
+          "KR-DA-0000061642",
+          "KR-DA-0000061641",
+          "KR-DA-0000061640",
+          "KR-DA-0000061643",
+          "KR-DA-0000061644",
+          "KR-DA-0000061639",
+          "KR-DA-0000061637"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "KR-PN-0000054076",
+    "name": "그래프 읽기 - 곡선",
+    "seq": 4,
+    "units": [
+      {
+        "id": "KR-UN-0000022297",
+        "name": "곡선 그래프에서 조건에 알맞은 값 구하기",
+        "seq": 5,
+        "datas": [
+          "KR-DA-0000062631",
+          "KR-DA-0000062628",
+          "KR-DA-0000062634",
+          "KR-DA-0000062629",
+          "KR-DA-0000062632",
+          "KR-DA-0000062630",
+          "KR-DA-0000062633",
+          "KR-DA-0000062627"
+        ]
+      },
+      {
+        "id": "KR-UN-0000022298",
+        "name": "곡선 그래프에서 조건에 알맞은 값 구하기",
+        "seq": 6,
+        "datas": [
+          "KR-DA-0000062695",
+          "KR-DA-0000062694",
+          "KR-DA-0000062698",
+          "KR-DA-0000062696",
+          "KR-DA-0000062693",
+          "KR-DA-0000062697",
+          "KR-DA-0000062692",
+          "KR-DA-0000062691"
+        ]
+      },
+      {
+        "id": "KR-UN-0000022300",
+        "name": "곡선 그래프에서 반복하는 시간 구하기",
+        "seq": 10,
+        "datas": [
+          "KR-DA-0000062776",
+          "KR-DA-0000062772",
+          "KR-DA-0000062787",
+          "KR-DA-0000062773",
+          "KR-DA-0000062774",
+          "KR-DA-0000062777",
+          "KR-DA-0000062775",
+          "KR-DA-0000062778",
+          "KR-DA-0000062771"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "KR-PN-0000054074",
+    "name": "그래프 읽기 - 종합",
+    "seq": 5,
+    "units": [
+      {
+        "id": "KR-UN-0000022305",
+        "name": "직선 그래프에 대한 이해",
+        "seq": 1,
+        "datas": [
+          "KR-DA-0000062825",
+          "KR-DA-0000062824",
+          "KR-DA-0000062826",
+          "KR-DA-0000062823",
+          "KR-DA-0000062821",
+          "KR-DA-0000062827",
+          "KR-DA-0000062822",
+          "KR-DA-0000062820"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "KR-PN-0000053889",
+    "name": "두 그래프",
+    "seq": 6,
+    "units": [
+      {
+        "id": "KR-UN-0000022314",
+        "name": "두 그래프가 만나는 횟수",
+        "seq": 5,
+        "datas": [
+          "KR-DA-0000063125",
+          "KR-DA-0000063095",
+          "KR-DA-0000063099",
+          "KR-DA-0000063094",
+          "KR-DA-0000063097",
+          "KR-DA-0000063100",
+          "KR-DA-0000063098",
+          "KR-DA-0000063096",
+          "KR-DA-0000063093"
+        ]
+      },
+      {
+        "id": "KR-UN-0000022315",
+        "name": "시작 시간 차이",
+        "seq": 6,
+        "datas": [
+          "KR-DA-0000063153",
+          "KR-DA-0000063152",
+          "KR-DA-0000063157",
+          "KR-DA-0000063156",
+          "KR-DA-0000063154",
+          "KR-DA-0000063151",
+          "KR-DA-0000063155",
+          "KR-DA-0000063150"
+        ]
+      },
+      {
+        "id": "KR-UN-0000022317",
+        "name": "여러 그래프에서 조건에 맞는 사람",
+        "seq": 9,
+        "datas": [
+          "KR-DA-0000063283",
+          "KR-DA-0000063282",
+          "KR-DA-0000063286",
+          "KR-DA-0000063284",
+          "KR-DA-0000064321",
+          "KR-DA-0000063281",
+          "KR-DA-0000063285",
+          "KR-DA-0000063280",
+          "KR-DA-0000063279"
+        ]
+      }
+    ]
+  }
+]

@@ -1,7 +1,7 @@
 "use strict";
 const contentDB = require("./content");
 const Neptune = require("./neptune");
-const paging_size = 100;
+const paging_size = 400;
 const ProgressBar = require('progress')
 
 let _updatePropertiesPaged = async( traverser, data, count=0) => {
@@ -132,15 +132,16 @@ let _createEdgePagedByOut = async (traverser, data) => {
 
 let loadPatterns = async () => {
 	let name = 'patterns'
-	let { count, data, edges } = await contentDB.getPatterns();
+//	let { count, data, edges } = await contentDB.getPatterns();
 	console.group();
 	console.log("\n---Start Neptune Job for " + name + "---");
 	const n = new Neptune('patterns');
 
-	await _createVertexPaged(n, data, count);
-	await _createEdgePagedByOut(n, edges);
+	//await _createVertexPaged(n, data, count);
+	//await _createEdgePagedByOut(n, edges);
 
 	const children = await contentDB.getPatternUnitRel()
+	
 	console.log('adding pattern data rels')
 	await _createEdgePaged(n, children);
 	console.log("\n---End Neptune Job for " + name + "---");
@@ -232,9 +233,10 @@ let linkProblemSubsteps = async () => {
 }
 
 let updateProblemContents = async () => {
-	let inc = 5000
-	let counter = 1
-	while (counter < 380000){
+	let inc 	= 5000
+	let counter = 100000
+	let max 	= counter+inc
+	while (counter < max){
 		let start = counter+1
 		let end = counter+inc
 		const name = 'problem contents from id: ' + start + ' to ' + end
@@ -258,11 +260,11 @@ let updateProblemContents = async () => {
 
 	//await loadUnits();
 	//await loadData();
-	//await loadPatterns()
+	await loadPatterns()
 	//await loadTests();
 	//await loadProblems()
 	//await linkProblemSubsteps()
-	await updateProblemContents()
+	//await updateProblemContents()
 
 	let end = Date.now()
 	let total = (end - start) / 1000
