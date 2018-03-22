@@ -4,7 +4,7 @@ const config = require("../secret");
 const _ = require('lodash')
 const { structure, process } = require("gremlin-javascript");
 const DriverRemoteConnection = require("../node_modules/gremlin-javascript/lib/driver/driver-remote-connection");
-
+const Neptune = require("./neptune");
 const connection = new DriverRemoteConnection(config.neptune.endpoint);
 var g = new structure.Graph().traversal().withRemote(connection);
 const T = process.t;
@@ -52,9 +52,8 @@ let getTutorial = async () => {
 	//traversal = g.V().hasLabel("Product").valueMap(true)
 	//traversal = g.V().hasLabel("Data").limit(1).valueMap(true)
 	//traversal = g.V().hasLabel("Product").outE('hasMap').inV().id()
-	34899, 51969, 51974, 51979, 51991, 51996, 52000, 52102, 52111, 52121, 52127, 52134, 52141, 52147, 52156, 52161, 52166, 52169, 52176, 52181, 52185, 52193, 52199, 52211, 52222, 52232, 53257, 53265, 53284, 53300, 53304 
 	let lessonId = 'KR-LS-0000052198'
-	let level = 'S_LOW'
+	let level = 'S_MID'
 	traversal = g.V(lessonId)
 	.outE('hasPattern').order().by(__.values('seq')).as('pseq').inV()
 		.where(__.out('hasUnit').out('hasData').has('student_level',level).count().is(P.gt(0)))
@@ -72,27 +71,37 @@ let getTutorial = async () => {
 				.fold())
 			.fold())
 		.fold()
-		
+/* 		let connectQuery = __.addE(label).from_(__.V(outNode)).to(__.V(inNode))
+		for (const key in properties) {
+			if (properties.hasOwnProperty(key)) {
+				const prop = properties[key];
+				if (prop === null) {
+					connectQuery.property(key, "null");
+				} else {
+					let data = prop instanceof Array ? JSON.stringify(prop) : prop;
+					connectQuery.property(key, data);
+				}
+			}
+		}
+		if (!this.traversal) {
+			this.traversal = this.g.V(inNode).inE(label).V(outNode).fold()
+				.coalesce(__.unfold(), connectQuery)
+		} else {
+			this.traversal.V(inNode).inE(label).V(outNode).fold()
+				.coalesce(__.unfold(), connectQuery) */
 	
+	traversal = g.V().hasLabel('TESTSUNNY').drop()
 	
-	try {
-		let result = await traversal.next()
-		result = result.value
-	
-		fs.writeFile('./output/queryOutput.json',JSON.stringify(result, null, 2), function(err) {
-			if(err) console.log(err)
-			else console.log('query output saved')
-		})
-		
-	} catch (err) {
-		console.log(err);
-	}
-	
-	
-
-	
+	let result = await traversal.next().then( it =>  it.value );
 	let total = (Date.now() - start)/1000
 	console.log('query time: ' + total + 's')
-	console.groupEnd(); 
-
+	console.groupEnd();
+	return result
 })()
+.then(result => {
+	fs.writeFile('./output/queryOutput.json',JSON.stringify(result, null, 2), function(err) {
+		if(err) console.log(err)
+		else console.log('query output saved')
+	})
+})
+.catch( e => console.log(e) )

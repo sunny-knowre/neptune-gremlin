@@ -5,14 +5,12 @@ const config = require("../secret");
 const connection = new DriverRemoteConnection(config.neptune.endpoint);
 const __ = process.statics;
 const T = process.t;
-//const P = process.P;
+const P = process.P
 
 class Neptune {
 	constructor() {
 		this.g = new structure.Graph().traversal().withRemote(connection);
 		this.traversal = null;
-		this.nodes = 0;
-		this.edges = 0;
 	}
 	
 	createVertex({ id, label, properties }) {
@@ -41,7 +39,6 @@ class Neptune {
 				}
 			}
 		}
-		this.nodes++;
 	}
 
 	createEdge({ label, outNode, inNode, properties }) {
@@ -64,7 +61,6 @@ class Neptune {
 				}
 			}
 		}
-		this.edges++;
 	}
 	updateVertex ({id, properties} ){
 		if (!id) throw new Error("must give vertex id");
@@ -93,7 +89,6 @@ class Neptune {
 				}
 			}
 		}
-		this.nodes++; 
 	}
 
 	findOrMakeVertex({ id, label, properties }) {
@@ -120,18 +115,15 @@ class Neptune {
 		if (!this.traversal) {
 			this.traversal = this.g.V(id).fold().coalesce(__.unfold(),addQuery)
 		} else {
-			this.traversal.V(id).fold().coalesce(__.unfold(),addQuery)
+			this.traversal.coalesce(__.V(id), addQuery)
 		}
-		
-		this.nodes++;
 	}
 
 	findOrMakeEdge({ label, outNode, inNode, properties }) {
 		if (!label) throw new Error("must give edge label");
 		if (!outNode) throw new Error("must give out vertex id");
 		if (!inNode) throw new Error("must give in vertex id");
-		console.log(inNode, outNode,properties)
-		let connectQuery = __.addE(label).from_(__.V(outNode)).to(__.V(inNode))
+		let connectQuery = __.addE(label).from_("a")
 		for (const key in properties) {
 			if (properties.hasOwnProperty(key)) {
 				const prop = properties[key];
@@ -144,14 +136,12 @@ class Neptune {
 			}
 		}
 		if (!this.traversal) {
-			this.traversal = this.g.V(inNode).inE(label).V(outNode).fold()
-				.coalesce(__.unfold(), connectQuery)
+			this.traversal = this.g.V(outNode).as("a").V(inNode)
+								.coalesce(__.inE(label).where(__.outV().as("a")), connectQuery)
 		} else {
-			this.traversal.V(inNode).inE(label).V(outNode).fold()
-				.coalesce(__.unfold(), connectQuery)
+			this.traversal.V(outNode).as("a").V(inNode)
+							.coalesce(__.inE(label).where(__.outV().as("a")), connectQuery)
 		}
-		
-		this.edges++;
 	}
 
 	commit() {
@@ -170,14 +160,9 @@ class Neptune {
 			}
 		});
 	}
-	newTraversal() {
-		this.traversal = null;
-	}
 
 	reset() {
 		this.traversal = null;
-		this.nodes = 0;
-		this.edges = 0;
 	}
 }
 

@@ -19,8 +19,8 @@
     "hasSubstep": 162401,
     "hasTutorial": 52,
     "hasChapter": 269,
-    "hasMapNode": 1738,
     "hasTestData": 8768,
+    "hasMapNode": 1738,
     "hasContent": 1714,
     "hasMap": 36,
     "hasData": 74086,
@@ -28,7 +28,7 @@
     "callsUnit": 162518,
     "hasLesson": 523,
     "makesProblem": 49907,
-    "hasUnit": 30269,
+    "hasUnit": 28576,
     "hasProblem": 192,
     "hasCurriculum": 36
   }
