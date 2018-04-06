@@ -7,6 +7,7 @@ const DriverRemoteConnection = require("../node_modules/gremlin-javascript/lib/d
 const Neptune = require("./neptune");
 const connection = new DriverRemoteConnection(config.neptune.endpoint);
 var g = new structure.Graph().traversal().withRemote(connection);
+const P = process.P;
 const C = process.cardinality;
 const __ = process.statics
 const Scope = process.scope
