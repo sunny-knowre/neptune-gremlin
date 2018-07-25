@@ -1,35 +1,6 @@
 {
   "vertexCount": {
-    "Tutorial": 17,
-    "Pattern": 7015,
-    "DrillTest::Test": 265,
-    "ChapterTest::Test": 144,
-    "Chapter": 167,
-    "Product": 1,
-    "Data": 74086,
-    "MapNode": 1738,
-    "Unit": 20295,
-    "Lesson": 523,
-    "LevelTest::Test": 40,
-    "Curriculum": 26,
-    "Problem": 212450,
-    "Map": 36
+    "Unit": 21879
   },
-  "edgeCount": {
-    "hasSubstep": 162401,
-    "hasTutorial": 52,
-    "hasChapter": 269,
-    "hasTestData": 8768,
-    "hasMapNode": 1738,
-    "hasContent": 1714,
-    "hasMap": 36,
-    "hasData": 74086,
-    "hasPattern": 3119,
-    "callsUnit": 162518,
-    "hasLesson": 523,
-    "makesProblem": 49907,
-    "hasUnit": 28576,
-    "hasProblem": 192,
-    "hasCurriculum": 36
-  }
+  "edgeCount": {}
 }

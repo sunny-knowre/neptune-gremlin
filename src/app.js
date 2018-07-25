@@ -130,6 +130,12 @@ let _createEdgePagedByOut = async (traverser, data) => {
 	traverser.reset();
 };
 
+let testContentDB = async () => {
+  const { count, data } = await contentDB.getTests(); 
+  console.log('response from db')
+  console.log(count)
+};
+
 let loadPatterns = async () => {
 	let name = 'patterns'
 	let { count, data, edges } = await contentDB.getPatterns();
@@ -236,14 +242,15 @@ let updateProblemContents = async () => {
 
 (async () => {
 	let start = Date.now()
-	//await loadUnits();
-	//await loadData();
+	// await loadUnits();
+   await loadData();
 	//await loadPatterns()
 	//await loadPatternRels()
 	//await loadTests();
 	//await loadProblems()
 	//await linkProblemSubsteps()
 	//await updateProblemContents()
+   //await testContentDB()
 
 	let end = Date.now()
 	let total = (end - start) / 1000
