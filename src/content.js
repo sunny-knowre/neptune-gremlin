@@ -261,17 +261,18 @@ let getTests = () => {
 
 let getProblems = () => {
 	return new Promise((resolve, reject) => {
+      //unknown why that problem has to PMODULE	
 		let stmt = 
 		'SELECT	NO AS id, MODULE AS unit,PMODULE AS parent_unit, \
 				DATA AS data_id, level, seq, sinod, pseq, af \
 		FROM	TBQ \
-		WHERE	(af=1 and MODULE<999999 ) OR \
+		WHERE	( (af=1 and MODULE<999999 ) OR \
 				NO in (173176,173177,173178,173179,173180,173181,173182,173183,173184,173185,173186, \
 					173187,173188,173189, 173193,173194,173195,173192,173190,173191,173196,173197,173198, \
 					155434, 155435, 155437, 155438, 155442, 155440, 155441, 155443, \
-					155436, 155444, 155439, 155445 ) \
+               155436, 155444, 155439, 155445 ) ) \
+            AND NO<>376995 \
 		ORDER BY DATA, LSEQ'
-		
 		pool.query(stmt, (error, results) => {
 			if (error) reject(error);
 			let problems = {};

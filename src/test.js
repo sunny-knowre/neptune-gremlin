@@ -89,7 +89,7 @@ let getTutorial = async () => {
 			this.traversal.V(inNode).inE(label).V(outNode).fold()
 				.coalesce(__.unfold(), connectQuery) */
 	
-	traversal = g.V().hasLabel('TESTSUNNY').drop()
+	traversal = g.V("KR-PB-0000376995").drop()
 	
 	let result = await traversal.next().then( it =>  it.value );
 	let total = (Date.now() - start)/1000

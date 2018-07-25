@@ -1,6 +1,16 @@
 {
   "vertexCount": {
-    "Unit": 21879
+    "Pattern": 8640,
+    "Test::ChapterTest": 170,
+    "Data": 85276,
+    "Problem": 252949,
+    "Unit": 21879,
+    "Test::LevelTest": 42,
+    "Test::DrillTest": 318
   },
-  "edgeCount": {}
+  "edgeCount": {
+    "hasTestData": 10360,
+    "hasUnit": 30207,
+    "hasData": 85276
+  }
 }

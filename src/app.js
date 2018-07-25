@@ -2,7 +2,7 @@
 const contentDB = require("./content");
 const Neptune = require("./neptune");
 const ProgressBar = require('progress')
-const paging_size = 500;
+const paging_size = 300;
 
 let _updatePropertiesPaged = async( traverser, data, count=0) => {
 	let counter = 1;
@@ -207,7 +207,7 @@ let loadProblems = async () => {
 	console.log("\n---Start Neptune Job for " + name + "---");
 
 	const n = new Neptune();
-	await _createVertexPaged(n, data, count);
+	// await _createVertexPaged(n, data, count);
 	await _createEdgePaged(n, edges);	
 }
 
@@ -243,13 +243,13 @@ let updateProblemContents = async () => {
 (async () => {
 	let start = Date.now()
 	// await loadUnits();
-   await loadData();
-	//await loadPatterns()
-	//await loadPatternRels()
-	//await loadTests();
-	//await loadProblems()
-	//await linkProblemSubsteps()
-	//await updateProblemContents()
+   // await loadData();
+	// await loadPatterns()
+	// await loadPatternRels()
+	// await loadTests();
+   await loadProblems()
+	// await linkProblemSubsteps()
+	//await updateProblemContents() -- last step skipped 180725
    //await testContentDB()
 
 	let end = Date.now()
