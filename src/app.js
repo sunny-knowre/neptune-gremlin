@@ -207,7 +207,7 @@ let loadProblems = async () => {
 	console.log("\n---Start Neptune Job for " + name + "---");
 
 	const n = new Neptune();
-	// await _createVertexPaged(n, data, count);
+	await _createVertexPaged(n, data, count);
 	await _createEdgePaged(n, edges);	
 }
 
@@ -221,9 +221,11 @@ let linkProblemSubsteps = async () => {
 }
 
 let updateProblemContents = async () => {
+   //start 45000
+   //end  460000
 	let inc 	= 5000
-	let counter = 160000
-	let max 	= 380000
+	let counter = 45000
+	let max 	= 200000
 	while (counter < max){
 		let start = counter+1
 		let end = counter+inc
@@ -247,10 +249,10 @@ let updateProblemContents = async () => {
 	// await loadPatterns()
 	// await loadPatternRels()
 	// await loadTests();
-   await loadProblems()
+   // await loadProblems()
 	// await linkProblemSubsteps()
-	//await updateProblemContents() -- last step skipped 180725
-   //await testContentDB()
+   await updateProblemContents()
+   // await testContentDB()
 
 	let end = Date.now()
 	let total = (end - start) / 1000

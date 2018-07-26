@@ -8,6 +8,8 @@ const Neptune = require("./neptune");
 const connection = new DriverRemoteConnection(config.neptune.endpoint);
 var g = new structure.Graph().traversal().withRemote(connection);
 const P = process.P;
+const T = process.t;
+const Order = process.order;
 const C = process.cardinality;
 const __ = process.statics
 const Scope = process.scope
@@ -89,7 +91,7 @@ let getTutorial = async () => {
 			this.traversal.V(inNode).inE(label).V(outNode).fold()
 				.coalesce(__.unfold(), connectQuery) */
 	
-	traversal = g.V("KR-PB-0000376995").drop()
+	traversal = g.V().hasLabel("Problem").order().by(T.id,Order.incr).limit(1)
 	
 	let result = await traversal.next().then( it =>  it.value );
 	let total = (Date.now() - start)/1000

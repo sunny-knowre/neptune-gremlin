@@ -3,12 +3,15 @@
     "Pattern": 8640,
     "Test::ChapterTest": 170,
     "Data": 85276,
-    "Problem": 252949,
+    "Problem": 252948,
     "Unit": 21879,
     "Test::LevelTest": 42,
     "Test::DrillTest": 318
   },
   "edgeCount": {
+    "hasSubstep": 191949,
+    "makesProblem": 94331,
+    "callsUnit": 313117,
     "hasTestData": 10360,
     "hasUnit": 30207,
     "hasData": 85276
